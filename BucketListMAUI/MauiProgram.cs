@@ -18,10 +18,6 @@ public static class MauiProgram
 
 		builder.Services.AddSingleton<TaskPage>();
 		builder.Services.AddSingleton<TaskViewModel>();
-
-        builder.Services.AddTransient<NewTaskPage>();
-        builder.Services.AddTransient<NewTaskViewModel>();
-
 #if DEBUG
         builder.Logging.AddDebug();
 #endif

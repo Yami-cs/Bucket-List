@@ -5,8 +5,14 @@
              xmlns:viewmodel="clr-namespace:BucketListMAUI"
              x:DataType="viewmodel:TaskViewModel"
              Title="TaskPage">
-    <VerticalStackLayout Spacing="10" Margin="5">
-        <CollectionView x:Name ="CollectionView" Grid.Row="2" Grid.ColumnSpan="2"
+    <Grid RowDefinitions="100, auto, *" ColumnDefinitions=".75*, .25*" Padding="10" RowSpacing="10" ColumnSpacing="10" >
+        <Entry x:Name="NoteEditor"
+                Placeholder="Enter your task"
+                Text="{Binding Text}"
+                HeightRequest="50"
+                Grid.Row="0"/>
+        <Button HeightRequest="50" Grid.Row="0" Grid.Column="1"  Text="Add Note" Command="{Binding AddCommand}"/>
+        <CollectionView Grid.Row="2" Grid.ColumnSpan="2"
                   ItemsSource="{Binding Items}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType ="{x:Type x:String}">
@@ -14,7 +20,7 @@
                         <SwipeView.RightItems>
                             <SwipeItems>
                                 <SwipeItem Text="Delete" BackgroundColor="red"
-                                           Command="{Binding Source ={RelativeSource AncestorType={x:Type viewmodel:TaskViewModel}}, Path=Delete}"
+                                           Command="{Binding Source ={RelativeSource AncestorType={x:Type viewmodel:TaskViewModel}}, Path=DeleteCommand}"
                                            CommandParameter="{Binding .}"/>
                             </SwipeItems>
                         </SwipeView.RightItems>
@@ -27,6 +33,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <Button Text="Add Note"/>
-    </VerticalStackLayout>
+    </Grid>
 </ContentPage>
