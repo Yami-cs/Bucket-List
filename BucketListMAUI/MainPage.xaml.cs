@@ -14,13 +14,15 @@ public partial class MainPage : ContentPage
 	{
 		count++;
 
+		if (count == 69) { CounterLabel.Text = "Nice"; }
 		if (count == 1)
 		{
 			CounterBtn.Text = $"Clicked {count} time";
-			CounterLabel.Text = "ахахахахах";
-		}
+            CounterLabel.Text = "Not funny";
+        }
 		else
-			CounterBtn.Text = $"Clicked {count} times";
+            CounterLabel.Text = "Not funny";
+        CounterBtn.Text = $"Clicked {count} times";
 
 		SemanticScreenReader.Announce(CounterBtn.Text);
 	}
