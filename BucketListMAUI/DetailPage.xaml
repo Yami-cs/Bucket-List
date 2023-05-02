@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BucketListMAUI.DetailPage"
+             xmlns:viewmodel="clr-namespace:BucketListMAUI"
+             x:DataType="viewmodel:DetailViewModel"
+             Title="DetailPage">
+    <VerticalStackLayout>
+        <Label 
+            Text="{Binding Text}"
+            FontSize="25"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <Grid RowDefinitions="100, auto, *" ColumnDefinitions=".75*, .25*" Padding="10" RowSpacing="10" ColumnSpacing="10" >
+            <Entry
+                Placeholder="Enter your task"
+                Text="{Binding Text1}"
+                HeightRequest="50"
+                Grid.Row="0"/>
+            <Button HeightRequest="50" Grid.Row="0" Grid.Column="1"  Text="Add Note" Command="{Binding AddCommand}"/>
+            <CollectionView Grid.Row="2" Grid.ColumnSpan="2"
+                  ItemsSource="{Binding Items}"
+                        SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType ="{x:Type x:String}">
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Delete" BackgroundColor="red"
+                                           Command="{Binding Source ={RelativeSource AncestorType={x:Type viewmodel:DetailViewModel}}, Path=DeleteCommand}"
+                                           CommandParameter="{Binding .}"/>
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                            <Grid Padding="0.1" ColumnDefinitions=".25*, .75*">
+                                <CheckBox Grid.Column="0"/>
+                                <Frame Grid.Column="1">
+                                    <Label Text="{Binding .}" FontSize="14"/>
+                                </Frame>
+                            </Grid>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+
+        <Button Text="Go back"
+                Command ="{Binding GoBackCommand}"/>
+    </VerticalStackLayout>
+</ContentPage>
