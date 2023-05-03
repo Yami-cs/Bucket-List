@@ -5,12 +5,13 @@
              xmlns:viewmodel="clr-namespace:BucketListMAUI"
              x:DataType="viewmodel:DetailViewModel"
              Title="DetailPage">
-    <VerticalStackLayout>
+    <VerticalStackLayout >
         <Label 
             Text="{Binding Text}"
-            FontSize="25"
+            FontSize="32"
             VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            HorizontalOptions="Center" 
+            FontAttributes="Bold"/>
 
         <Grid RowDefinitions="100, auto, *" ColumnDefinitions=".75*, .25*" Padding="10" RowSpacing="10" ColumnSpacing="10" >
             <Entry
@@ -32,9 +33,9 @@
                                            CommandParameter="{Binding .}"/>
                                 </SwipeItems>
                             </SwipeView.RightItems>
-                            <Grid Padding="0.1" ColumnDefinitions=".25*, .75*">
-                                <CheckBox Grid.Column="0" x:Name="checkBox"/>
-                                <Label x:Name ="DetailText" Text="{Binding .}" FontSize="14" Grid.Column="1">
+                            <Grid Padding="0.1" ColumnDefinitions=".15*, .85*">
+                                <CheckBox Grid.Column="0" x:Name="checkBox" />
+                                <Label x:Name ="DetailText" Text="{Binding .}" FontSize="24" Grid.Column="1">
                                     <Label.Triggers>
                                         <DataTrigger TargetType="Label"
                                                  Binding ="{Binding Source={x:Reference checkBox}, Path=IsChecked}"

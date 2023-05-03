@@ -15,6 +15,8 @@ namespace BucketListMAUI
         {
             Items = new ObservableCollection<string>();        
         }
+
+        
         [ObservableProperty]
         ObservableCollection<string> items;
 

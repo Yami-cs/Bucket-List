@@ -17,6 +17,9 @@ namespace BucketListMAUI
         {
             Items = new ObservableCollection<string>();
         }
+
+        private List<string> selectedItems = new List<string>();
+
         [ObservableProperty]
         ObservableCollection<string> items;
 
@@ -41,6 +44,19 @@ namespace BucketListMAUI
             if (Items.Contains(s))
                 Items.Remove(s);
         }
-        
+
+        [RelayCommand]
+        void ToggleSelection(string s)
+        {
+            if (selectedItems.Contains(s))
+            {
+                selectedItems.Remove(s);
+            }
+            else
+            {
+                selectedItems.Add(s);
+            }
+        }        
+
     }
 }
