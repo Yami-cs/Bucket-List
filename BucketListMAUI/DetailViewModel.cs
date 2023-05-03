@@ -26,11 +26,6 @@ namespace BucketListMAUI
         [ObservableProperty]
         string text1;
 
-        [RelayCommand]
-        async Task GoBack()
-        {
-            await Shell.Current.GoToAsync("..");
-        }
 
         [RelayCommand]
         void Add()
@@ -46,5 +41,6 @@ namespace BucketListMAUI
             if (Items.Contains(s))
                 Items.Remove(s);
         }
+        
     }
 }

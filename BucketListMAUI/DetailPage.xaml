@@ -33,18 +33,24 @@
                                 </SwipeItems>
                             </SwipeView.RightItems>
                             <Grid Padding="0.1" ColumnDefinitions=".25*, .75*">
-                                <CheckBox Grid.Column="0"/>
-                                <Frame Grid.Column="1">
-                                    <Label Text="{Binding .}" FontSize="14"/>
-                                </Frame>
+                                <CheckBox Grid.Column="0" x:Name="checkBox"/>
+                                <Label x:Name ="DetailText" Text="{Binding .}" FontSize="14" Grid.Column="1">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label"
+                                                 Binding ="{Binding Source={x:Reference checkBox}, Path=IsChecked}"
+                                                 Value="true">
+                                            <Setter Property="TextDecorations"
+                                                Value="Strikethrough"/>
+                                            <Setter Property="TextColor"
+                                                    Value="Gray"/>
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
                             </Grid>
                         </SwipeView>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </Grid>
-
-        <Button Text="Go back"
-                Command ="{Binding GoBackCommand}"/>
     </VerticalStackLayout>
 </ContentPage>
