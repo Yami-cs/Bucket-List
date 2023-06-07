@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using Android.OS;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Google.Crypto.Tink.Signature;
 
 namespace BucketListMAUI
 {
@@ -19,6 +20,8 @@ namespace BucketListMAUI
         }
 
         private List<string> selectedItems = new List<string>();
+        [ObservableProperty]
+        int count;
 
         [ObservableProperty]
         ObservableCollection<string> items;
@@ -29,7 +32,6 @@ namespace BucketListMAUI
         [ObservableProperty]
         string text1;
 
-
         [RelayCommand]
         void Add()
         {
@@ -38,6 +40,7 @@ namespace BucketListMAUI
             Items.Add(Text1);
             Text1 = string.Empty;
         }
+
         [RelayCommand]
         void Delete(string s)
         {
@@ -45,18 +48,6 @@ namespace BucketListMAUI
                 Items.Remove(s);
         }
 
-        [RelayCommand]
-        void ToggleSelection(string s)
-        {
-            if (selectedItems.Contains(s))
-            {
-                selectedItems.Remove(s);
-            }
-            else
-            {
-                selectedItems.Add(s);
-            }
-        }        
 
     }
 }

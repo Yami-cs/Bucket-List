@@ -22,7 +22,7 @@ namespace BucketListMAUI
 
         [ObservableProperty]
         string text;
-     
+
         [RelayCommand]
         void Add()
         {
