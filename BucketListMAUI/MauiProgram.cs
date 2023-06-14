@@ -23,6 +23,8 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<DetailPage>();
         builder.Services.AddSingleton<DetailViewModel>();
+
+
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
