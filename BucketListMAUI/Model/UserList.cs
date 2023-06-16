@@ -16,6 +16,8 @@ namespace BucketListMAUI.Model
         [Column("name")]
         public string Name { get; set; }
 
+        public int Percentage { get; set; }
+        
 
         [OneToMany]
         public List<Item> Items { get; set; }

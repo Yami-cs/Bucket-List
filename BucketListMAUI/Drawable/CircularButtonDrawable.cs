@@ -47,11 +47,11 @@ namespace BucketListMAUI.Drawable
 #elif ANDROID || IOS
         IImage image;
         Assembly assembly = GetType().GetTypeInfo().Assembly;
-        using (Stream stream = assembly.GetManifestResourceStream("ShoppingList.Resources.Images." + Image))
+        using (Stream stream = assembly.GetManifestResourceStream("BucketListMAUI.Resources.Images." + Image))
         {
             image =  Microsoft.Maui.Graphics.Platform.PlatformImage.FromStream(stream);
             if (image is null)
-                throw new FileNotFoundException("ShoppingList.Resources.Images." + Image); 
+                throw new FileNotFoundException("BucketListMAUI.Resources.Images." + Image); 
             if (image != null)
             {
                 //canvas.SetShadow(new SizeF(0,0), 0, Colors.Gray); 

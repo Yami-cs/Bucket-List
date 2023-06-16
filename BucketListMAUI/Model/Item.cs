@@ -41,6 +41,7 @@ public class Item : ObservableObject
     {
         this.Name = itemName;
     }
+
 }
 
 

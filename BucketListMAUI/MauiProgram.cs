@@ -19,13 +19,14 @@ public static class MauiProgram
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			});
+                fonts.AddFont("Font Awesome 6 Free-Regular-400.otf");
+            });
 		builder.Services.AddSingleton<MainPage>();
 
         builder.Services.AddSingleton<ItemService>();
 
         builder.Services.AddTransient<UserListDetails>();
-        builder.Services.AddTransient<UserListDetailViewModel>();
+        builder.Services.AddSingleton<UserListDetailViewModel>();
 
         builder.Services.AddSingleton<UserListViewModel>();
         builder.Services.AddTransient<UserListDataInput>();

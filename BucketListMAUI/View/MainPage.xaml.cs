@@ -24,6 +24,7 @@ public partial class MainPage : ContentPage
     {
         base.OnAppearing();
         _ulvm.GetUserLists();
+        _ulvm.CountPercentage();
 
         var cartLottie = this.FindByName("CartLottie") as SKLottieView;
     }
@@ -50,5 +51,12 @@ public partial class MainPage : ContentPage
 
     
 	}
+    private async void ThemeButtonPressed(object sender, EventArgs e)
+    {
+        var circularButton = sender;
+        var themeName = ((TappedEventArgs)e).Parameter.ToString();
+        _ulvm.UpdatePrimaryColorPressed(themeName);
+    }
+
 }
 

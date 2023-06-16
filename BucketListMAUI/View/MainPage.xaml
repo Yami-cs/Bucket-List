@@ -45,15 +45,18 @@
                                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:UserListViewModel}}, Path=DeleteItemCommand}"
                                                     Direction="Right"/>-->
                                 </Frame.GestureRecognizers>
-                                <VerticalStackLayout>
+                                <HorizontalStackLayout Spacing ="200">
                                     <Label Text="{Binding Name}"
+                                       FontSize="Medium"
+                                       TextColor="{DynamicResource Accent}"/>
+                                    <Label Text="{Binding Percentage}"
                                        FontSize="Medium"
                                        TextColor="{DynamicResource Accent}"/>
                                     <!--<Label Text="{Binding Type}"
                                            FontSize="Micro"
                                            TextColor="{DynamicResource Accent}"
                                            Margin="25,0,0,0"/>-->
-                                </VerticalStackLayout>
+                                </HorizontalStackLayout>
                             </Frame>
                         </SwipeView>
                     </Grid>
@@ -100,15 +103,15 @@
             </GraphicsView.GestureRecognizers>
         </controls:CircularButton>
 
-
-        <!--<Button Text="Create New List"
-                Command="{Binding CreateUserListCommand}"
-                IsEnabled="{Binding IsNotBusy}"
-                BackgroundColor="{DynamicResource Primary}"
-                Grid.Row="1"
-                Grid.Column="3"
-                Margin="8"/>-->
-
+        <Button Text="ChangeColor"
+               Command="{Binding UpdatePrimaryColorPressedCommand}"
+                CommandParameter="Striking"
+               IsEnabled="{Binding IsNotBusy}"
+               BackgroundColor="{DynamicResource Primary}"
+               Grid.Row="1"
+              Grid.Column="3"
+              Margin="8"/>
+        
         <ActivityIndicator IsVisible="{Binding IsBusy}"
                            IsRunning="{Binding IsBusy}"
                            HorizontalOptions="FillAndExpand"

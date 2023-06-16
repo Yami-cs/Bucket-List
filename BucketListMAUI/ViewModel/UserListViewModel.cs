@@ -12,6 +12,8 @@ public partial class UserListViewModel : BaseViewModel
     private ItemService _itemService;
     private int _newListId;
 
+    [ObservableProperty]
+    public bool isRefreshing;
 
     public ObservableCollection<UserList> UserLists { get; } = new();
 
@@ -117,6 +119,49 @@ public partial class UserListViewModel : BaseViewModel
         _uls.ArchiveUserList(ul);
 
         UserLists.Remove(ul);
+
+    }
+
+    [RelayCommand]
+    public void CountPercentage()
+    {
+        int completedCount = _itemService.GetUserListItems(UserLists[0]).Count(item => item.IsCompleted);
+        int completedPercentage = completedCount / _itemService.GetUserListItems(UserLists[0]).Count * 100;
+        UserLists[0].Percentage = completedPercentage;
+    }
+    [RelayCommand]
+    public void UpdatePrimaryColorPressed(string themeName)
+    {
+        Preferences.Set("Theme", themeName);
+
+        ICollection<ResourceDictionary> mergedDictionaries = Application.Current.Resources.MergedDictionaries;
+        if (mergedDictionaries != null)
+        {
+            foreach (ResourceDictionary dictionaries in mergedDictionaries)
+            {
+                var primaryFound = dictionaries.TryGetValue(themeName + "Primary", out var primary);
+                if (primaryFound)
+                    dictionaries["Primary"] = primary;
+
+                var secondaryFound = dictionaries.TryGetValue(themeName + "Secondary", out var secondary);
+                if (secondaryFound)
+                    dictionaries["Secondary"] = secondary;
+
+                var tertiaryFound = dictionaries.TryGetValue(themeName + "Tertiary", out var tertiary);
+                if (tertiaryFound)
+                    dictionaries["Tertiary"] = tertiary;
+
+                var accentFound = dictionaries.TryGetValue(themeName + "Accent", out var accent);
+                if (accentFound)
+                    dictionaries["Accent"] = accent;
+
+                var darkAccentFound = dictionaries.TryGetValue(themeName + "DarkAccent", out var darkAccent);
+                if (darkAccentFound)
+                    dictionaries["DarkAccent"] = darkAccent;
+
+
+            }
+        }
 
     }
 }
