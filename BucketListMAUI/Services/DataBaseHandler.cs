@@ -23,7 +23,6 @@ public class DatabaseHandler
 
         _db = new SQLiteConnection(_pathToDb);
         _db.CreateTable<Item>();
-        _db.CreateTable<ItemLocationData>();
         _db.CreateTable<UserList>();
     }
 
@@ -42,7 +41,6 @@ public class DatabaseHandler
         _pathToDb = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), newDBName);
         _db = new SQLiteConnection(_pathToDb);
         _db.CreateTable<Item>();
-        _db.CreateTable<ItemLocationData>();
         _db.CreateTable<UserList>();
     }
 

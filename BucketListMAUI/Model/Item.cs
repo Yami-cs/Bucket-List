@@ -30,9 +30,6 @@ public class Item : ObservableObject
     [Column("iscompleted")]
     public bool IsCompleted { get; set; }
 
-    [OneToOne]
-    [Column("itemlocationdata")]
-    public ItemLocationData LocationData { get; set; }
 
 
     public Item()
@@ -46,19 +43,6 @@ public class Item : ObservableObject
         this.Category = item.Category;
         this.EstimatedPrice = item.EstimatedPrice;
         this.ParentId = item.ParentId;
-
-    }
-
-    public Item(Item item, ItemLocationData ild)
-    {
-        this.Name = item.Name;
-        this.Description = item.Description;
-        this.Category = item.Category;
-        this.EstimatedPrice = item.EstimatedPrice;
-        this.ParentId = item.ParentId;
-
-        this.LocationData = ild;
-        this.Aisle = ild.Description;
 
     }
 }

@@ -43,11 +43,6 @@ public class ItemService
         Guard.IsNotNull(ul, nameof(ul));
 
         var itemList = _db.GetQueryByParentId<Item>(ul.Id);
-
-        foreach (Item item in itemList)
-        {
-            item.LocationData = _db.GetQueryByParentId<ItemLocationData>(item.Id).FirstOrDefault();
-        }
         return itemList;
     }
 
@@ -56,11 +51,6 @@ public class ItemService
         Guard.IsNotNull(ul, nameof(ul));
 
         var returnLists = _db.GetQueryByParentId<Item>(ul.Id);
-        foreach (Item item in returnLists)
-        {
-            item.LocationData = _db.GetQueryByParentId<ItemLocationData>(item.Id).FirstOrDefault();
-        }
-
         return returnLists;
     }
 
@@ -69,9 +59,8 @@ public class ItemService
         Guard.IsNotNull(newItem, nameof(newItem));
 
         var item = _db.Insert(newItem);
-        newItem.LocationData.ParentId = item.Id;
+        newItem.ParentId = item.Id;
         newItem.Id = item.Id;
-        _db.Insert<ItemLocationData>(newItem.LocationData);
         return newItem;
 
     }
