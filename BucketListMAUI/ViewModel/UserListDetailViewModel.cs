@@ -123,6 +123,7 @@ public partial class UserListDetailViewModel: BaseViewModel
         if (result is not null)
             OnItemEntryCompleted(result);
 
+        RefreshUserListDetailScreen();
         IsBusy = false;
     }
 

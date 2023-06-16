@@ -21,6 +21,7 @@
           ColumnSpacing="3"
           RowDefinitions="*,Auto">
 
+
         <!--<RefreshView Grid.ColumnSpan="3" Command="{Binding RefreshUserListDetailScreenCommand}"
                      CommandParameter="UserListCollectionView"
                      IsRefreshing="{Binding IsRefreshing}"
@@ -82,7 +83,6 @@
                                     <VerticalStackLayout Grid.Row="1"
 							                             Grid.Column="2"
 							                             Grid.ColumnSpan="2">
-
 
                                     </VerticalStackLayout>
                                 </Grid>
