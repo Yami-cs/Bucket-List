@@ -1,12 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Globalization;
 
-namespace BucketListMAUI.Controls
+namespace BucketListMAUI.Controls;
+
+public class StringToBoolConverter : IValueConverter
 {
-    internal class StringToBoolConverter
+    public StringToBoolConverter()
     {
+
+    }
+
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        Console.WriteLine("Test");
+        var asString = (string)value;
+        if (value is not null)
+        {
+            var result = Boolean.Parse(asString);
+            return result;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        Console.WriteLine("Test");
+        return null;
     }
 }

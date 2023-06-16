@@ -30,33 +30,30 @@ namespace BucketListMAUI.Controls
             set => SetValue(IsVisibleProperty, value);
         }
         public static BindableProperty ButtonColorProperty = BindableProperty.Create(
-        nameof(ButtonColor), typeof(Color), typeof(CircularButton));
+        nameof(ButtonColor), typeof(Color), typeof(CircularButton), propertyChanged: OnButtonColorChanged);
         //propertyChanged: OnButtonColorChanged);
 
         public static BindableProperty ImageProperty = BindableProperty.Create(
-            nameof(Image), typeof(string), typeof(CircularButton));
+            nameof(Image), typeof(string), typeof(CircularButton), propertyChanged: OnImageChanged);
         //propertyChanged: OnImageChanged);
 
         public new static BindableProperty IsVisibleProperty = BindableProperty.Create(
             nameof(IsVisible), typeof(bool), typeof(CircularButton),
-            defaultValue: false);
+            propertyChanged: OnIsVisibleChanged);
         //propertyChanged: OnIsVisibleChanged);
 
         public CircularButton()
         {
-            Handler = new CircularButtonHandler();
             var drawable = new CircularButtonDrawable();
             Drawable = drawable;
         }
 
-        //Перенес эту логику в circular button handler
-        ///<seealso cref = "CircularButtonHandler" />
         static void OnButtonColorChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var control = (CircularButton)bindable;
             var buttonColor = control.ButtonColor;
-            if (control.Drawable is CircularButtonDrawable thisDrawable)
-                thisDrawable.ButtonColor = buttonColor;
+            var thisDrawable = control.Drawable as BucketListMAUI.Drawable.CircularButtonDrawable;
+            thisDrawable.ButtonColor = buttonColor;
 
             control.Invalidate();
         }
@@ -65,14 +62,11 @@ namespace BucketListMAUI.Controls
         {
             var control = (CircularButton)bindable;
             var image = control.Image;
-            if (control.Drawable is CircularButtonDrawable thisDrawable)
-                thisDrawable.Image = image;
+            var thisDrawable = control.Drawable as BucketListMAUI.Drawable.CircularButtonDrawable;
+            thisDrawable.Image = image;
             control.Invalidate();
 
         }
-
-        //Перенес эту логику в circular button handler
-        ///<seealso cref = "CircularButtonHandler" />
         static void OnIsVisibleChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var control = (CircularButton)bindable;

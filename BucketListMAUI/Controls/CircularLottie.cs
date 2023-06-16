@@ -1,12 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SkiaSharp;
+using SkiaSharp.Extended.UI.Controls;
 
-namespace BucketListMAUI.Controls
+namespace BucketListMAUI.Controls;
+
+public class CircularLottie : SKLottieView
 {
-    internal class CircularLottie
+    public new Color BackgroundColor = Colors.Transparent;
+
+
+    public CircularLottie() : base()
     {
+        Console.Write("test");
+        this.IsAnimationEnabled = true;
+        //base.OnPaintSurface(); 
+    }
+
+    protected override void OnPaintSurface(SKCanvas canvas, SKSize size)
+    {
+        Console.Write("test");
+        using var paint = new SKPaint
+        {
+            IsAntialias = true,
+            Color = SKColors.Blue
+        };
+        canvas.DrawCircle(200, 200, 100, paint);
+
     }
 }
+
