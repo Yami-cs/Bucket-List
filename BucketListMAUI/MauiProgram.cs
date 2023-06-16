@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using CommunityToolkit.Maui;
+using BucketListMAUI.View;
+using BucketListMAUI.ViewModel;
 
 namespace BucketListMAUI;
 
@@ -18,11 +20,22 @@ public static class MauiProgram
 			});
 		builder.Services.AddSingleton<MainPage>();
 
-		builder.Services.AddSingleton<TaskPage>();
+		/*builder.Services.AddSingleton<TaskPage>();
 		builder.Services.AddSingleton<TaskViewModel>();
 
         builder.Services.AddSingleton<DetailPage>();
-        builder.Services.AddSingleton<DetailViewModel>();
+        builder.Services.AddTransient<DetailViewModel>();*/
+
+        builder.Services.AddSingleton<ItemService>();
+
+        builder.Services.AddTransient<UserListDetails>();
+        //builder.Services.AddTransient<UserListDetailViewModel>();
+
+        builder.Services.AddSingleton<UserListViewModel>();
+        builder.Services.AddTransient<UserListDataInput>();
+        builder.Services.AddTransient<UserListDataInputViewModel>();
+        builder.Services.AddSingleton<UserListService>();
+        builder.Services.AddSingleton<ItemService>();
 
 
 #if DEBUG

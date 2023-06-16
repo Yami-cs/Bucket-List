@@ -49,24 +49,37 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Maui" Version="5.1.0" />
+	  <Compile Remove="ViewModel\DetailViewModel.cs" />
+	  <Compile Remove="ViewModel\TaskViewModel.cs" />
+	  <Compile Remove="View\DetailPage.xaml.cs" />
+	  <Compile Remove="View\TaskPage.xaml.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Remove="View\DetailPage.xaml" />
+	  <MauiXaml Remove="View\TaskPage.xaml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Diagnostics" Version="8.2.0" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="SkiaSharp" Version="2.88.3" />
+		<PackageReference Include="SkiaSharp.Extended" Version="2.0.0-preview.61" />
+		<PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.61" />
+		<PackageReference Include="SQLite" Version="3.13.0" />
+		<PackageReference Include="SQLiteNetExtensions" Version="2.1.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="DetailPage.xaml">
+	  <MauiXaml Update="View\UserListDataInput.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="TaskPage.xaml">
+	  <MauiXaml Update="View\UserListDetails.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="View\" />
-	  <Folder Include="ViewModel\" />
 	</ItemGroup>
 
 </Project>

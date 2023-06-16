@@ -1,19 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BucketListMAUI.Handlers;
 using IImage = Microsoft.Maui.Graphics.IImage;
 
 namespace BucketListMAUI.Controls
 {
     public class CircularButton : GraphicsView
     {
+        /// <summary>
+        /// Цвет, которые передается в drawable для "FIll Color" метода Fill Circle
+        /// </summary>
         public Color ButtonColor
         {
             get => (Color)GetValue(ButtonColorProperty);
             set => SetValue(ButtonColorProperty, value);
         }
+        /// <summary>
+        /// Строка, содержащая название изображения (имя файла, не директории)
+        /// <br/> Ожидается, что файл лежит в Recources/Images/
+        /// </summary>
         public string Image
         {
             get => (string)GetValue(ImageProperty);
@@ -45,6 +48,9 @@ namespace BucketListMAUI.Controls
             var drawable = new CircularButtonDrawable();
             Drawable = drawable;
         }
+
+        //Перенес эту логику в circular button handler
+        ///<seealso cref = "CircularButtonHandler" />
         static void OnButtonColorChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var control = (CircularButton)bindable;
@@ -65,7 +71,7 @@ namespace BucketListMAUI.Controls
 
         }
 
-        // Converted this logic over to the circular button handler
+        //Перенес эту логику в circular button handler
         ///<seealso cref = "CircularButtonHandler" />
         static void OnIsVisibleChanged(BindableObject bindable, object oldValue, object newValue)
         {

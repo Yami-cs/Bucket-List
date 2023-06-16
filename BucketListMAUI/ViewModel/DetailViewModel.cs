@@ -1,11 +1,12 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using BucketListMAUI.View;
 
-namespace BucketListMAUI
+namespace BucketListMAUI.ViewModel
 {
     [QueryProperty("Text", "Text")]
-    public partial class DetailViewModel: ObservableObject
+    public partial class DetailViewModel: BaseViewModel
     {
         public DetailViewModel()
         {

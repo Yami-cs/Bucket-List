@@ -6,8 +6,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BucketListMAUI.View;
 
-namespace BucketListMAUI
+namespace BucketListMAUI.ViewModel
 {
     public partial class TaskViewModel: ObservableObject
     {

@@ -1,30 +1,54 @@
-﻿namespace BucketListMAUI;
+﻿using SkiaSharp.Extended.UI.Controls;
+
+namespace BucketListMAUI.View;
+
 
 public partial class MainPage : ContentPage
 {
-	int count = 0;
+    readonly UserListViewModel _ulvm;
 
-	public MainPage()
-	{
-		InitializeComponent();
-		CounterBtn.Clicked += OnCounterClicked;
-	}
+    public MainPage(UserListViewModel ulViewModel)
+    {
+        InitializeComponent();
+        BindingContext = ulViewModel;
+        _ulvm = ulViewModel;
+        _ulvm.GetUserLists();
 
-	private void OnCounterClicked(object sender, EventArgs e)
-	{
-		count++;
+        // If the user just has 1 list, just go to that detail page, saving them a click
+        if (_ulvm.UserLists.Count == 1)
+            _ulvm.GoToListItems(_ulvm.UserLists[0]);
 
-		if (count == 69) { CounterLabel.Text = "Nice"; }
-		if (count == 1)
-		{
-			CounterBtn.Text = $"Clicked {count} time";
-            CounterLabel.Text = "Not funny";
-        }
-		else
-            CounterLabel.Text = "Not funny";
-        CounterBtn.Text = $"Clicked {count} times";
+    }
 
-		SemanticScreenReader.Announce(CounterBtn.Text);
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        _ulvm.GetUserLists();
+
+        var cartLottie = this.FindByName("CartLottie") as SKLottieView;
+    }
+
+    private async void NewListButtonPressed(object sender, EventArgs e)
+    {
+
+        var circularButton = sender as CircularButton;
+        await circularButton.BounceOnPressAsync();
+
+        _ulvm.CreateUserList();
+
+    }
+    private async void FrameTapped(object sender, EventArgs e)
+    {
+
+        var frame = sender as Frame;
+        await frame.ScaleTo(1.1, 75, Easing.BounceIn);
+        await frame.ScaleTo(1.0, 75, Easing.BounceOut);
+
+        var userList = ((TappedEventArgs)e).Parameter as UserList;
+
+        _ulvm.GoToListItems(userList);
+
+    
 	}
 }
 

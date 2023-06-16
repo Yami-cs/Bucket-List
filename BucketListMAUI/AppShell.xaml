@@ -4,16 +4,18 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:BucketListMAUI"
-    Shell.FlyoutBehavior="Disabled">
+    xmlns:views="clr-namespace:BucketListMAUI"
+    xmlns:view="clr-namespace:BucketListMAUI.View"
+    Shell.BackgroundColor="{DynamicResource Primary}"
+    Shell.FlyoutBehavior="Flyout"
+    FlyoutBackgroundColor="{DynamicResource Secondary}"
+    Shell.TitleColor="{DynamicResource Accent}"
+    Shell.ForegroundColor="{DynamicResource Accent}">
     <TabBar>
         <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
+        ContentTemplate="{DataTemplate view:MainPage}"
         Route="MainPage" />
 
-        <ShellContent
-        Title="Tasks"
-        ContentTemplate="{DataTemplate local:TaskPage}"
-        Route="TaskPage" />
     </TabBar>
 </Shell>
