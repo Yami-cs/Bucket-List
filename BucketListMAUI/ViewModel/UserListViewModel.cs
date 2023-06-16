@@ -126,7 +126,7 @@ public partial class UserListViewModel : BaseViewModel
     public void CountPercentage()
     {
         int completedCount = _itemService.GetUserListItems(UserLists[0]).Count(item => item.IsCompleted);
-        int completedPercentage = completedCount / _itemService.GetUserListItems(UserLists[0]).Count * 100;
+        double completedPercentage = Math.Round((double)completedCount / _itemService.GetUserListItems(UserLists[0]).Count * 100);
         UserLists[0].Percentage = completedPercentage;
     }
     [RelayCommand]
