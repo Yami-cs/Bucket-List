@@ -10,8 +10,6 @@ public partial class UserListDataInput : ContentPage
         BindingContext = userListDataInputViewModel;
         _uldiv = userListDataInputViewModel;
 
-        this.TypeOfListPicker.SelectedIndex = 0;
-
     }
 
     private void Picker_SelectedIndexChanged(object sender, EventArgs e)
@@ -19,7 +17,7 @@ public partial class UserListDataInput : ContentPage
         var picker = sender as Picker;
 
 
-        _uldiv.UserListType = (UserList.ListType)picker.SelectedIndex;
+       // _uldiv.UserListType = (UserList.ListType)picker.SelectedIndex;
 
     }
 

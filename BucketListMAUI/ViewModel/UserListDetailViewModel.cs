@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,12 +39,14 @@ public partial class UserListDetailViewModel: BaseViewModel
         set
         {
             userList = value;
-           // ListSorter.SortUserListItems(userList);
 
-            if (UserList.Name.Length > 10)
+            //Maybe could use it for progress bar implemention
+            /*if (UserList.Name.Length > 10)
                 Title = $"{UserList.Name.Substring(0, 10)}...        - est. price: {UserList.TotalPrice}";
             else
-                Title = $"{UserList.Name}...        - est. price: {UserList.TotalPrice}";
+                Title = $"{UserList.Name}...        - est. price: {UserList.TotalPrice}";*/
+
+            Title = $"{UserList.Name}";
 
             OnUserListChanged(value);
             OnPropertyChanged(nameof(UserList));
@@ -69,7 +71,7 @@ public partial class UserListDetailViewModel: BaseViewModel
 
     public void OnUserListChanged(UserList value)
     {
-       // ListSorter.SortUserListItems(userList);
+       // Add here logic for sorting
     }
 
     [RelayCommand]
@@ -91,8 +93,7 @@ public partial class UserListDetailViewModel: BaseViewModel
     [RelayCommand]
     public async void GoToItemDetail(Item item)
     {
-        await Shell.Current.DisplayAlert(item.Name, $"Category: {item.Category} \nDescription: {item.Description} \n" +
-            $"Aisle: {item.Aisle} \n Estimated Price: {item.EstimatedPrice}", "Ok");
+        await Shell.Current.DisplayAlert(item.Name, $"Category: {item.Category} \nDescription: {item.Description} \n", "Ok");
     }
 
     [RelayCommand]
@@ -132,19 +133,14 @@ public partial class UserListDetailViewModel: BaseViewModel
 
         try
         {
-
-            var result = await _krogerAPIService.GetProductLocationDataAsync(itemName, Preferences.Get("KrogerLocation", "0000000"), apiConfig);
-
-            ItemLocationData ild = result.Item1;
-            Item item = result.Item2;
-
+            var item = new Item(itemName);
 
             item.ParentId = UserList.Id;
 
-            var newItem = new Item(item, ild);
+            var newItem = new Item(item);
 
             newItem = _itemService.CreateItem(newItem);
-            newItem.LocationData.ParentId = newItem.Id;
+           // newItem.ParentId = newItem.Id;
             UserList.Items.Add(newItem);
 
             UserListNotifers();
@@ -153,58 +149,7 @@ public partial class UserListDetailViewModel: BaseViewModel
         }
         catch (FeatureNotEnabledException e) //this is probably a misuse of this exception type, but oh well, it kinda fits lol
         {
-            var promptedZipNotSetYet = Preferences.Get("FirstTimePromptForZip", true);
-
-            if (promptedZipNotSetYet)
-            {
-                var goToSettings = await Shell.Current.DisplayAlert("Error!",
-                $"Unable To Get Kroger Data, You Need To Set Your Kroger Location In The Settings. Go There Now?", "Ok", "Cancel");
-
-                if (goToSettings)
-                {
-                    await Shell.Current.GoToAsync($"{nameof(SettingsView)}");
-                }
-                else
-                {
-
-                    var newItem = new Item()
-                    {
-                        Name = itemName,
-                        ParentId = UserList.Id,
-                        LocationData = new ItemLocationData()
-                    };
-
-                    newItem = _itemService.CreateItem(newItem);
-                    newItem.LocationData.ParentId = newItem.Id;
-                    UserList.Items.Add(newItem);
-
-                    ListSorter.SortUserListItems(userList);
-
-                    UserListNotifers();
-
-                }
-            }
-            else
-            {
-                var newItem = new Item()
-                {
-                    Name = itemName,
-                    ParentId = UserList.Id,
-                    LocationData = new ItemLocationData()
-                };
-
-                newItem = _itemService.CreateItem(newItem);
-                newItem.LocationData.ParentId = newItem.Id;
-                UserList.Items.Add(newItem);
-
-                ListSorter.SortUserListItems(userList);
-
-                UserListNotifers();
-
-            }
-
-            Preferences.Set("FirstTimePromptForZip", false);
-
+            
 
         }
     }
@@ -216,9 +161,6 @@ public partial class UserListDetailViewModel: BaseViewModel
 
         _itemService.DeleteItem(item);
         UserList.Items.Remove(item);
-
-        UserList.Items = ListSorter.SortUserListItems(userList);
-
 
         HasUndo = true;
         // We stop and restart the timer in case they delete things back to back, it won't take 
@@ -243,7 +185,7 @@ public partial class UserListDetailViewModel: BaseViewModel
         if (wasUndone)
         {
             undoneItem = _itemService.CreateItem(undoneItem);
-            undoneItem.LocationData.ParentId = undoneItem.Id;
+           // undoneItem.ParentId = undoneItem.Id;
 
             UserList.Items.Add(undoneItem);
             UserListNotifers();
@@ -258,10 +200,7 @@ public partial class UserListDetailViewModel: BaseViewModel
 
     private void UserListNotifers()
     {
-        if (UserList.Name.Length > 10)
-            Title = $"{UserList.Name.Substring(0, 10)}...        - est. price: {UserList.TotalPrice}";
-        else
-            Title = $"{UserList.Name}...        - est. price: {UserList.TotalPrice}";
+        Title = $"{UserList.Name}";
 
         OnUserListChanged(UserList);
         OnPropertyChanged(nameof(UserList));
@@ -275,6 +214,4 @@ public partial class UserListDetailViewModel: BaseViewModel
 
     }
 
-
-
-}*/
+}

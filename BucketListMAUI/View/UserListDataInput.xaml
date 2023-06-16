@@ -26,31 +26,6 @@
                    Placeholder="List Name"
                    PlaceholderColor="{DynamicResource Accent}"/>
 
-            <!--<Entry Text="{Binding UlTargetStore}"
-                   TextColor="{DynamicResource Accent}"
-                   MaxLength="20"
-                   Style="{DynamicResource CommonEntryStyle}"
-                   Placeholder="The Store you want to use this list for?"
-                   ReturnCommand="{Binding UserListCompletedCommand}"/>-->
-
-
-            <HorizontalStackLayout
-                Grid.ColumnSpan="2">
-
-                <Label Text="Type of List: "
-                      TextColor="{DynamicResource Accent}"
-                       Margin="0,5,5,0"/>
-
-                <Picker ItemsSource="{Binding TypeList}"
-                        SelectedIndexChanged="Picker_SelectedIndexChanged"
-                        TextColor="{DynamicResource Accent}"
-                        FontSize="15"
-                        SelectedIndex="1"
-                        x:Name="TypeOfListPicker"
-                        />
-
-            </HorizontalStackLayout>
-
 
         </StackLayout>
 

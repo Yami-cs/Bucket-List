@@ -35,17 +35,12 @@ public partial class UserListDataInputViewModel: BaseViewModel
         }
     }
 
-    [ObservableProperty]
-    private UserList.ListType userListType;
-
 
     [RelayCommand]
     public async void OnUserListCompleted()
     {
         UserList = new();
         UserList.Name = UlName;
-        UserList.TargetStore = UlTargetStore;
-        UserList.Type = UserListType;
 
 
         UserList = _userListService.CreateUserList(UserList);
