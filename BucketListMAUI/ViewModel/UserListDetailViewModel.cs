@@ -71,7 +71,7 @@ public partial class UserListDetailViewModel: BaseViewModel
 
     public void OnUserListChanged(UserList value)
     {
-       // Add here logic for sorting
+        
     }
 
     [RelayCommand]
@@ -81,6 +81,7 @@ public partial class UserListDetailViewModel: BaseViewModel
         IsRefreshing = true;
         UserList.Items.Clear();
 
+        
         UserList.Items = _itemService.GetUserListItems(UserList);
 
       //  ListSorter.SortUserListItems(userList);
@@ -105,7 +106,7 @@ public partial class UserListDetailViewModel: BaseViewModel
 
 
 
-        //UserListNotifers();
+        UserListNotifers();
 
     }
 
@@ -121,9 +122,10 @@ public partial class UserListDetailViewModel: BaseViewModel
         string result = await Shell.Current.DisplayPromptAsync("New Item", "Enter The New Item:");
 
         if (result is not null)
+        {
             OnItemEntryCompleted(result);
-
-        RefreshUserListDetailScreen();
+            RefreshUserListDetailScreen();
+        }
         IsBusy = false;
     }
 
@@ -141,7 +143,7 @@ public partial class UserListDetailViewModel: BaseViewModel
             var newItem = new Item(item);
 
             newItem = _itemService.CreateItem(newItem);
-           // newItem.ParentId = newItem.Id;
+           //newItem.ParentId = newItem.Id;
             UserList.Items.Add(newItem);
 
             UserListNotifers();
