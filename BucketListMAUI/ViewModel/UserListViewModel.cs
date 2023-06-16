@@ -41,7 +41,7 @@ public partial class UserListViewModel : BaseViewModel
     {
         _uls = userListService;
         _itemService = itemService;
-        Title = "My Shopping Lists";
+        Title = "My Goals";
     }
 
     [RelayCommand]
@@ -82,7 +82,7 @@ public partial class UserListViewModel : BaseViewModel
             return;
 
 
-        await Shell.Current.GoToAsync($"{nameof(UserListDataInputViewModel)}", true,
+        await Shell.Current.GoToAsync($"{nameof(UserListDataInput)}", true,
             new Dictionary<string, object>
             {
                 {"UserLists", UserLists}

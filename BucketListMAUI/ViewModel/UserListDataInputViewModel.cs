@@ -45,31 +45,30 @@ public partial class UserListDataInputViewModel: BaseViewModel
     [RelayCommand]
     public async void OnUserListCompleted()
     {
-        userList = new();
+        UserList = new();
+        UserList.Name = UlName;
+        UserList.TargetStore = UlTargetStore;
+        UserList.Type = UserListType;
 
-        userList.Name = UlName;
-        userList.TargetStore = ulTargetStore;
-        userList.Type = UserListType;
 
-
-        userList = _userListService.CreateUserList(userList);
+        UserList = _userListService.CreateUserList(UserList);
 
         if (PrepopulateList)
         {
-            UserList lastListOfThatType = _userListService.GetLastUserListOfType(userList);
+            UserList lastListOfThatType = _userListService.GetLastUserListOfType(UserList);
             lastListOfThatType.Items = _itemService.GetUserListItems(lastListOfThatType);
 
             foreach (var item in lastListOfThatType.Items)
             {
                 item.IsCompleted = false;
-                userList.Items.Add(item);
-                item.ParentId = userList.Id;
+                UserList.Items.Add(item);
+                item.ParentId = UserList.Id;
                 _itemService.CreateItem(item);
             }
         }
 
 
-        await Shell.Current.GoToAsync("..?id=" + userList.Id + "&createflag=true");
+        await Shell.Current.GoToAsync("..?id=" + UserList.Id + "&createflag=true");
 
     }
 

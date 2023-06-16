@@ -2,6 +2,7 @@
 using CommunityToolkit.Maui;
 using BucketListMAUI.View;
 using BucketListMAUI.ViewModel;
+using SkiaSharp.Views.Maui.Controls.Hosting;
 
 namespace BucketListMAUI;
 
@@ -13,6 +14,7 @@ public static class MauiProgram
 		builder
 			.UseMauiApp<App>()
             .UseMauiCommunityToolkit()
+			.UseSkiaSharp()
             .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -36,7 +38,6 @@ public static class MauiProgram
         builder.Services.AddTransient<UserListDataInputViewModel>();
         builder.Services.AddSingleton<UserListService>();
         builder.Services.AddSingleton<ItemService>();
-
 
 #if DEBUG
         builder.Logging.AddDebug();

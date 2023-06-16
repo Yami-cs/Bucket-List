@@ -64,13 +64,19 @@
 		<PackageReference Include="CommunityToolkit.Diagnostics" Version="8.2.0" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
+		<PackageReference Include="Microsoft.Data.Sqlite.Core" Version="7.0.7" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="SkiaSharp" Version="2.88.3" />
 		<PackageReference Include="SkiaSharp.Extended" Version="2.0.0-preview.61" />
 		<PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.61" />
-		<PackageReference Include="SQLite" Version="3.13.0" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
 		<PackageReference Include="SQLiteNetExtensions" Version="2.1.0" />
+		<PackageReference Include="SQLiteNetExtensions.Async" Version="2.1.0" />
+		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.5" />
+		<PackageReference Include="SQLitePCLRaw.core" Version="2.1.5" />
+		<PackageReference Include="SQLitePCLRaw.provider.dynamic_cdecl" Version="2.1.5" />
+		<PackageReference Include="SQLitePCLRaw.provider.e_sqlite3" Version="2.1.5" />
 	</ItemGroup>
 
 	<ItemGroup>
