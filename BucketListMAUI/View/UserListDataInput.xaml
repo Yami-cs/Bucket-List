@@ -52,17 +52,6 @@
             </HorizontalStackLayout>
 
 
-            <HorizontalStackLayout>
-                <Label Text="Pre-populate list with Items from last time?"
-                          TextColor="{DynamicResource Accent}"
-                       Padding="10"/>
-
-                <CheckBox IsChecked="{Binding PrepopulateList, Mode=TwoWay}"
-                          Color="{DynamicResource Accent}"
-                          CheckedChanged="CheckBox_CheckedChanged"/>
-
-            </HorizontalStackLayout>
-
         </StackLayout>
 
         <controls:CircularButton  

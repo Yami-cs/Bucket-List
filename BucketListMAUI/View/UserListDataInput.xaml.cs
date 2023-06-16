@@ -27,7 +27,6 @@ public partial class UserListDataInput : ContentPage
     {
 
         var checkbox = sender as CheckBox;
-        _uldiv.PrepopulateList = checkbox.IsChecked;
     }
 
     private async void NewItemButtonPressed(object sender, EventArgs e)
