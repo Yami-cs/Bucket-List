@@ -22,12 +22,6 @@ public static class MauiProgram
 			});
 		builder.Services.AddSingleton<MainPage>();
 
-		/*builder.Services.AddSingleton<TaskPage>();
-		builder.Services.AddSingleton<TaskViewModel>();
-
-        builder.Services.AddSingleton<DetailPage>();
-        builder.Services.AddTransient<DetailViewModel>();*/
-
         builder.Services.AddSingleton<ItemService>();
 
         builder.Services.AddTransient<UserListDetails>();

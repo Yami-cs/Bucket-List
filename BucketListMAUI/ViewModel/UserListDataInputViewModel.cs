@@ -36,9 +36,6 @@ public partial class UserListDataInputViewModel: BaseViewModel
     }
 
     [ObservableProperty]
-    public bool prepopulateList;
-
-    [ObservableProperty]
     private UserList.ListType userListType;
 
 
@@ -53,19 +50,7 @@ public partial class UserListDataInputViewModel: BaseViewModel
 
         UserList = _userListService.CreateUserList(UserList);
 
-        if (PrepopulateList)
-        {
-            UserList lastListOfThatType = _userListService.GetLastUserListOfType(UserList);
-            lastListOfThatType.Items = _itemService.GetUserListItems(lastListOfThatType);
 
-            foreach (var item in lastListOfThatType.Items)
-            {
-                item.IsCompleted = false;
-                UserList.Items.Add(item);
-                item.ParentId = UserList.Id;
-                _itemService.CreateItem(item);
-            }
-        }
 
 
         await Shell.Current.GoToAsync("..?id=" + UserList.Id + "&createflag=true");

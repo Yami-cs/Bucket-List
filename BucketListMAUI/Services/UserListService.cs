@@ -77,18 +77,6 @@ public class UserListService
 
     }
 
-    public UserList GetLastUserListOfType(UserList newList)
-    {
-        Guard.IsNotNull(newList, nameof(newList));
-
-        var allUserLists = _db.GetAllQuery<UserList>();
-
-        var listsOfType = allUserLists.FindAll(x => (x.Type == newList.Type) && x.Id != newList.Id).ToList();
-        var lastListOfThatType = listsOfType.OrderByDescending(x => x.CreationDate).ToList()[0];
-
-        return lastListOfThatType;
-
-    }
 }
 
 
