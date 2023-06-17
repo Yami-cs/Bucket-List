@@ -49,6 +49,16 @@
                                     </SwipeItem>
                                 </SwipeItems>
                             </SwipeView.RightItems>
+                            <SwipeView.LeftItems>
+                                <SwipeItems>
+                                    <SwipeItem  IconImageSource="edit"
+                                            BackgroundColor="{DynamicResource DarkAccent}"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:UserListDetailViewModel}}, Path=ChangeItemNameDialogCommand}"
+                                            CommandParameter="{Binding .}"
+                                            >
+                                    </SwipeItem>
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
                             <Frame Grid.ColumnSpan="3"
                                Padding="5"
                                Margin="10,0,10,05"

@@ -167,6 +167,8 @@ public partial class UserListDetailViewModel: BaseViewModel
         if (result is not null)
         {
            item.Name = result;
+            _itemService.UpdateItem(item);
+           RefreshUserListDetailScreen();
         }
         IsBusy = false;
     }

@@ -71,8 +71,6 @@ public class UserListService
     {
         Guard.IsNotNull(userList);
 
-        userList.ArchiveDate = null;
-
         _db.Update<UserList>(userList);
 
     }

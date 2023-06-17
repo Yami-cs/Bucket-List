@@ -16,9 +16,6 @@ public partial class UserListDataInput : ContentPage
     {
         var picker = sender as Picker;
 
-
-       // _uldiv.UserListType = (UserList.ListType)picker.SelectedIndex;
-
     }
 
     private void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
