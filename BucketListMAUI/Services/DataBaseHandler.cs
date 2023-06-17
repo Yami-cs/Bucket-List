@@ -105,7 +105,7 @@ public class DatabaseHandler
     {
 
         List<T> returnList = _db.Query<T>("SELECT * FROM " + typeof(T).Name + "s" + " WHERE parentid = ?", id);
-       if (returnList.Count > 0)
+       // if (returnList.Count > 0)
             return returnList;
 
         throw new Exception("Nothing was returned from query on Table = " + typeof(T).Name + " with Parent Id = " + id);
@@ -140,19 +140,19 @@ public class DatabaseHandler
     {
         Guard.IsNotNull(deleteTarget, nameof(deleteTarget));
 
-        var numOfRowsFound = _db.Delete(deleteTarget);
+         _db.Delete(deleteTarget);
 
-        if (numOfRowsFound == 0)
-            throw new Exception("No Rows Found To Delete in Table " + typeof(T).Name + "s.");
+        //if (numOfRowsFound == 0)
+         //   throw new Exception("No Rows Found To Delete in Table " + typeof(T).Name + "s.");
     }
 
     public void Update<T>(T updateTarget) where T : new()
     {
         Guard.IsNotNull(updateTarget, nameof(updateTarget));
 
-        var numOfRowsFound = _db.Update(updateTarget);
+         _db.Update(updateTarget);
 
-        if (numOfRowsFound == 0)
-            throw new Exception("No Rows Found To Update in Table " + typeof(T).Name + "s.");
+        //if (numOfRowsFound == 0)
+           // throw new Exception("No Rows Found To Update in Table " + typeof(T).Name + "s.");
     }
 }

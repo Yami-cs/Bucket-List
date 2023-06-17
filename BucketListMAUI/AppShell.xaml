@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:BucketListMAUI"
     xmlns:views="clr-namespace:BucketListMAUI"
     xmlns:view="clr-namespace:BucketListMAUI.View"
-    Shell.BackgroundColor="{DynamicResource Primary}"
+    Shell.BackgroundColor="#80FFFFFF"
     Shell.FlyoutBehavior="Flyout"
     FlyoutBackgroundColor="{DynamicResource Secondary}"
     Shell.TitleColor="{DynamicResource Accent}"

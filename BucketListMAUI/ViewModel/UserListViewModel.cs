@@ -15,7 +15,8 @@ public partial class UserListViewModel : BaseViewModel
     [ObservableProperty]
     public bool isRefreshing;
 
-    public ObservableCollection<UserList> UserLists { get; } = new();
+
+    public ObservableCollection<UserList> UserLists { get; set; } = new();
 
     public bool CreateFlag { get; set; } = false;
 
@@ -125,43 +126,54 @@ public partial class UserListViewModel : BaseViewModel
     [RelayCommand]
     public void CountPercentage()
     {
-        int completedCount = _itemService.GetUserListItems(UserLists[0]).Count(item => item.IsCompleted);
-        double completedPercentage = Math.Round((double)completedCount / _itemService.GetUserListItems(UserLists[0]).Count * 100);
-        UserLists[0].Percentage = completedPercentage;
-    }
-    [RelayCommand]
-    public void UpdatePrimaryColorPressed(string themeName)
-    {
-        Preferences.Set("Theme", themeName);
-
-        ICollection<ResourceDictionary> mergedDictionaries = Application.Current.Resources.MergedDictionaries;
-        if (mergedDictionaries != null)
+        foreach (var userlist in UserLists)
         {
-            foreach (ResourceDictionary dictionaries in mergedDictionaries)
+            if (_itemService.GetUserListItems(userlist).Count > 0)
             {
-                var primaryFound = dictionaries.TryGetValue(themeName + "Primary", out var primary);
-                if (primaryFound)
-                    dictionaries["Primary"] = primary;
-
-                var secondaryFound = dictionaries.TryGetValue(themeName + "Secondary", out var secondary);
-                if (secondaryFound)
-                    dictionaries["Secondary"] = secondary;
-
-                var tertiaryFound = dictionaries.TryGetValue(themeName + "Tertiary", out var tertiary);
-                if (tertiaryFound)
-                    dictionaries["Tertiary"] = tertiary;
-
-                var accentFound = dictionaries.TryGetValue(themeName + "Accent", out var accent);
-                if (accentFound)
-                    dictionaries["Accent"] = accent;
-
-                var darkAccentFound = dictionaries.TryGetValue(themeName + "DarkAccent", out var darkAccent);
-                if (darkAccentFound)
-                    dictionaries["DarkAccent"] = darkAccent;
-
-
+                int completedCount = _itemService.GetUserListItems(userlist).Count(item => item.IsCompleted);
+                double completedPercentage = Math.Round((double)completedCount / _itemService.GetUserListItems(userlist).Count * 100);
+                userlist.Percentage = completedPercentage;
+                if (completedPercentage <= 33) userlist.Color = Color.FromArgb("fdd4a6");
+                else if (33 < completedPercentage && completedPercentage <= 67) userlist.Color = Color.FromArgb("ffff95");
+                else if (completedPercentage > 67) userlist.Color = Color.FromArgb("99ff99");
+            }
+            else
+            {
+                userlist.Percentage = 0;
+                userlist.Color = Color.FromArgb("#fdd4a6");
             }
         }
+    }
 
+    [RelayCommand]
+    public async void ChangeNameDialog(UserList ul)
+    {
+        if (IsBusy)
+            return;
+
+        IsBusy = true;
+
+        string result = await Shell.Current.DisplayPromptAsync("Change name", "Enter The New Name:");
+
+        if (result is not null)
+        {
+           ul.Name = result;
+        }
+        IsBusy = false;
+    }
+
+    [RelayCommand]
+    public void RefreshUserListScreen()
+    {
+
+        IsRefreshing = true;
+
+        UserLists.Clear();
+
+        foreach (var item in _uls.GetUserLists())
+        {
+            UserLists.Add(item);
+        }
+        IsRefreshing = false;
     }
 }

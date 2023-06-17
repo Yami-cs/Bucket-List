@@ -200,6 +200,22 @@ public partial class UserListDetailViewModel: BaseViewModel
 
 
     }
+    [RelayCommand]
+    public async void ChangeItemNameDialog(Item item)
+    {
+        if (IsBusy)
+            return;
+
+        IsBusy = true;
+
+        string result = await Shell.Current.DisplayPromptAsync("Change name", "Enter The New Name:");
+
+        if (result is not null)
+        {
+           item.Name = result;
+        }
+        IsBusy = false;
+    }
 
     private void UserListNotifers()
     {

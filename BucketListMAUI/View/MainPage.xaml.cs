@@ -51,12 +51,6 @@ public partial class MainPage : ContentPage
 
     
 	}
-    private async void ThemeButtonPressed(object sender, EventArgs e)
-    {
-        var circularButton = sender;
-        var themeName = ((TappedEventArgs)e).Parameter.ToString();
-        _ulvm.UpdatePrimaryColorPressed(themeName);
-    }
 
 }
 

@@ -9,6 +9,7 @@
              Title="{Binding Title}"
              x:Name="CurrentPage"
              BackgroundColor="{DynamicResource Secondary}"
+             BackgroundImageSource="Background.png"
              x:Class="BucketListMAUI.View.MainPage">
 
 
@@ -26,14 +27,26 @@
                             <SwipeView.RightItems>
                                 <SwipeItems>
                                     <SwipeItem  Text="Delete"
-                                            IconImageSource="delete"
+                                            IconImageSource="delete.png"
                                             BackgroundColor="{DynamicResource DarkAccent}"
+                                                
                                              Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:UserListViewModel}}, Path=DeleteItemCommand}"
                                             CommandParameter="{Binding .}">
                                     </SwipeItem>
                                 </SwipeItems>
                             </SwipeView.RightItems>
-                            <Frame  BackgroundColor="{DynamicResource Tertiary}">
+                            <SwipeView.LeftItems>
+                                <SwipeItems>
+                                    <SwipeItem  Text="Edit"
+                                            IconImageSource="edit.png"
+                                            BackgroundColor="{DynamicResource DarkAccent}"
+                                             Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:UserListViewModel}}, Path=ChangeNameDialogCommand}"
+                                            CommandParameter="{Binding .}">
+                                    </SwipeItem>
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+                            <Frame BackgroundColor="#ffffff"
+                                   BorderColor="#cecece">
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer   CommandParameter="{Binding .}"
                                                             Tapped="FrameTapped"/>
@@ -45,43 +58,27 @@
                                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:UserListViewModel}}, Path=DeleteItemCommand}"
                                                     Direction="Right"/>-->
                                 </Frame.GestureRecognizers>
-                                <HorizontalStackLayout Spacing ="200">
+                                <AbsoluteLayout>
+                                    <Rectangle Fill="{Binding Color}" HeightRequest="33" WidthRequest="40" 
+                                               Opacity="0.5" TranslationX="150" RadiusX="10" RadiusY="10"  
+                                               AbsoluteLayout.LayoutFlags="XProportional" AbsoluteLayout.LayoutBounds="0.48,3"/>
                                     <Label Text="{Binding Name}"
-                                       FontSize="Medium"
-                                       TextColor="{DynamicResource Accent}"/>
+                                           FontSize="Medium"
+                                           AbsoluteLayout.LayoutFlags="XProportional"
+                                           TextColor="{DynamicResource Accent}"/>
                                     <Label Text="{Binding Percentage}"
-                                       FontSize="Medium"
-                                       TextColor="{DynamicResource Accent}"/>
-                                    <!--<Label Text="{Binding Type}"
-                                           FontSize="Micro"
-                                           TextColor="{DynamicResource Accent}"
-                                           Margin="25,0,0,0"/>-->
-                                </HorizontalStackLayout>
+                                           FontSize="Medium"
+                                              HorizontalTextAlignment="End"
+                                           AbsoluteLayout.LayoutFlags="XProportional" AbsoluteLayout.LayoutBounds="0.98,5"
+                                           TextColor="{DynamicResource Accent}"/>
+
+                                </AbsoluteLayout>
                             </Frame>
                         </SwipeView>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-
-
-        <skiasharp:SKLottieView x:Name="CartLottie"
-	                            WidthRequest="300"
-				                HeightRequest="300"
-                                Grid.Row="0"
-                                RepeatCount="0"
-                                RepeatMode="Restart"
-                                Opacity=".5"
-                                ZIndex="-1"
-                                Grid.Column="0"
-                                Grid.ColumnSpan="2"
-                                VerticalOptions="End"
-                                HorizontalOptions="Center"
-				                Source="69114-shopping-cart.json"
-				                BackgroundColor="Transparent">
-        </skiasharp:SKLottieView>
-
-
 
         <controls:CircularButton  
 			            Grid.Row="1"
@@ -90,7 +87,7 @@
                         WidthRequest="75"
                         HeightRequest="75"
                         Margin="25,25,25,25"
-                        ButtonColor="{DynamicResource Tertiary}"
+                        ButtonColor="#70FFFFFF"
                         BackgroundColor="Transparent"
                         Image="plus_sign.png"
                         VerticalOptions="End"
@@ -103,15 +100,6 @@
             </GraphicsView.GestureRecognizers>
         </controls:CircularButton>
 
-        <Button Text="ChangeColor"
-               Command="{Binding UpdatePrimaryColorPressedCommand}"
-                CommandParameter="Striking"
-               IsEnabled="{Binding IsNotBusy}"
-               BackgroundColor="{DynamicResource Primary}"
-               Grid.Row="1"
-              Grid.Column="3"
-              Margin="8"/>
-        
         <ActivityIndicator IsVisible="{Binding IsBusy}"
                            IsRunning="{Binding IsBusy}"
                            HorizontalOptions="FillAndExpand"
@@ -120,5 +108,4 @@
                            Grid.ColumnSpan="2"/>
 
     </Grid>
-
 </ContentPage>

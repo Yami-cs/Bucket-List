@@ -63,7 +63,7 @@ public class UserListService
 
         delList.ArchiveDate = DateTime.Now;
 
-        _db.Update<UserList>(delList);
+        _db.Delete<UserList>(delList);
 
     }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,17 +18,12 @@ namespace BucketListMAUI.Model
         public string Name { get; set; }
 
         public double Percentage { get; set; }
+
+        public Color  Color { get; set; }
         
 
         [OneToMany]
         public List<Item> Items { get; set; }
-
-        public enum ListType
-        {
-            WeeklyGrocery,
-            ForAParty,
-            OutOfSnacks
-        }
 
         [Column("creation_dt")]
         public DateTime CreationDate { get; set; }

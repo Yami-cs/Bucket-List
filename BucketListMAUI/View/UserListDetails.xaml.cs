@@ -11,6 +11,7 @@ public partial class UserListDetails : ContentPage
 
         _ulvm = userListDetailViewModel;
         _ulvm.HasUndo = false;
+        
 
     }
 

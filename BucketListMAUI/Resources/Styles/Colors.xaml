@@ -22,9 +22,9 @@
 
     <!-- Nautical -->
     <Color x:Key="NauticalPrimary">#0081A7</Color>
-    <Color x:Key="NauticalSecondary">#00AFB9</Color>
-    <Color x:Key="NauticalTertiary">#d9512b</Color>
-    <Color x:Key="NauticalAccent">#FED9B7</Color>
+    <Color x:Key="NauticalSecondary">#ffc000</Color>
+    <Color x:Key="NauticalTertiary">#60FFFFFF</Color>
+    <Color x:Key="NauticalAccent">Black</Color>
     <Color x:Key="NauticalDarkAccent">#F07167</Color>
 
     <!-- Neon -->

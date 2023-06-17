@@ -27,13 +27,6 @@ public partial class UserListDataInputViewModel: BaseViewModel
         _itemService = new();
     }
 
-    public List<string> TypeList
-    {
-        get
-        {
-            return Enum.GetNames(typeof(UserList.ListType)).ToList();
-        }
-    }
 
 
     [RelayCommand]

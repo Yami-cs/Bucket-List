@@ -117,26 +117,6 @@
                 </controls:CircularButton.GestureRecognizers>
             </controls:CircularButton>
 
-
-            <controls:CircularButton  
-			            Grid.Row="0"
-			            Grid.Column="0"
-                        x:Name="UndoButton"
-                        WidthRequest="75"
-                        HeightRequest="75"
-                        Margin="25,25,25,25"
-                        ButtonColor="{DynamicResource Tertiary}"
-                        BackgroundColor="Transparent"
-                        Image="undo.png"
-                        VerticalOptions="End"
-                        HorizontalOptions="Start"
-                        IsEnabled="{Binding HasUndo}"
-                        IsVisible="{Binding HasUndo}"
-			            >
-                <controls:CircularButton.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="UndoButtonPressed"/>
-                </controls:CircularButton.GestureRecognizers>
-            </controls:CircularButton>
         </Grid>
     </Grid>
 

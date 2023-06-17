@@ -84,7 +84,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="Resources\Images\plus_sign.png" />
+		<EmbeddedResource Include="Resources\Images\plus_sign.png" />
+		<EmbeddedResource Include="Resources\Images\checked_Frame.png" />
+		<EmbeddedResource Include="Resources\Images\menu_sign.png" />
+		<EmbeddedResource Include="Resources\Images\back_sign.png" />
+		<EmbeddedResource Include="Resources\Images\background.png" />
+		<EmbeddedResource Include="Resources\Images\delete.png" />
+		<EmbeddedResource Include="Resources\Images\edit.png" />
 	</ItemGroup>
 	
 	<ItemGroup>
