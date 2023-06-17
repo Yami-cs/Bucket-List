@@ -15,7 +15,6 @@ public partial class UserListViewModel : BaseViewModel
     [ObservableProperty]
     public bool isRefreshing;
 
-
     public ObservableCollection<UserList> UserLists { get; set; } = new();
 
     public bool CreateFlag { get; set; } = false;
