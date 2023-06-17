@@ -21,7 +21,15 @@ namespace BucketListMAUI.Model
 
         [Ignore]
         public Color Color { get ; set; }
-        
+
+        [Column("color")]
+        public string ColorString
+        {
+            get { return Color.ToHex(); }
+            set { Color = Color.FromArgb(value);
+                OnPropertyChanged(nameof(Color));
+            }
+        }
 
         [OneToMany]
         public List<Item> Items { get; set; }
@@ -42,6 +50,7 @@ namespace BucketListMAUI.Model
             this.Id = ul.Id;
             this.Name = ul.Name;
             this.Items = ul.Items;
+            this.Percentage = ul.Percentage;
         }
 
         public UserList(string name)

@@ -22,10 +22,10 @@
           RowDefinitions="*,Auto">
 
 
-        <!--<RefreshView Grid.ColumnSpan="3" Command="{Binding RefreshUserListDetailScreenCommand}"
+        <RefreshView Grid.ColumnSpan="3" Command="{Binding RefreshUserListDetailScreenCommand}"
                      CommandParameter="UserListCollectionView"
                      IsRefreshing="{Binding IsRefreshing}"
-		             Grid.Row="0">-->
+		             Grid.Row="0">
         <CollectionView ItemsSource="{Binding UserList.Items}"
                         CanReorderItems="False"
                         SelectionMode="None"
@@ -102,7 +102,7 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <!-- </RefreshView>-->
+       </RefreshView>
 
         <Grid   Grid.ColumnSpan="3"
                 ColumnDefinitions="*,*,*"

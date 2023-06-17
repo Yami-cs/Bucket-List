@@ -158,6 +158,7 @@ public partial class UserListViewModel : BaseViewModel
         {
            ul.Name = result;
             _uls.UnarchiveUserList(ul);
+            RefreshUserListScreen();
         }
         IsBusy = false;
     }
