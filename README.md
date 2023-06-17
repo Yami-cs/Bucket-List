@@ -21,6 +21,9 @@
 Откройте файл решения с помощью visual studio. 
 Запустите проект с использованием эмулятора одной из платформ.
 
+Либо используйте APK для вашего телефона на android
+https://drive.google.com/file/d/1_8JoBxcvVHcjWHTrw8BT4DoPpVmUIUbx/view?usp=drive_link 
+
 ## Скриншоты приложения
 ![Снимок экрана 2023-06-17 100104](https://github.com/Yami-cs/Bucket-List/assets/82933148/98e9ba47-3962-4f24-8f97-1d362b4297d2)
 ![Снимок экрана 2023-06-17 100052](https://github.com/Yami-cs/Bucket-List/assets/82933148/836e8245-d327-48ad-b335-060cde8c3d03)
