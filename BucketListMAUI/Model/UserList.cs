@@ -1,13 +1,8 @@
-﻿using Microsoft.Maui.Graphics.Platform;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices.Marshalling;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
+/* Это класс UserList, он отвечает за представление целей пользователя */
 namespace BucketListMAUI.Model
 {
+    /* Название таблицы и аттрибуты для датабазы SQLite*/
     [Table("UserLists")]
     public class UserList: ObservableObject
     {
@@ -26,7 +21,7 @@ namespace BucketListMAUI.Model
         [Column("color")]
         public string ColorString
         {
-            get { return Color.ToHex(); }
+            get => Color.ToHex();
             set { Color = Color.FromArgb(value);
                 OnPropertyChanged(nameof(Color));
             }
