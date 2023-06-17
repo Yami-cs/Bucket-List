@@ -19,7 +19,8 @@ namespace BucketListMAUI.Model
 
         public double Percentage { get; set; }
 
-        public Color  Color { get; set; }
+        [Ignore]
+        public Color Color { get ; set; }
         
 
         [OneToMany]
