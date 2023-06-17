@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BucketListMAUI.View;
 using System.Timers;
-using BucketListMAUI.View;
+
+//ViewModel для страницы с задачами
 
 namespace BucketListMAUI.ViewModel;
 [QueryProperty("UserList", "UserList")]
 public partial class UserListDetailViewModel: BaseViewModel
 {
-    readonly ItemService _itemService;
+    private readonly ItemService _itemService;
 
     System.Timers.Timer undoTimer;
     Stack<Item> undoItemBuffer;
@@ -137,7 +134,7 @@ public partial class UserListDetailViewModel: BaseViewModel
 
 
         }
-        catch (FeatureNotEnabledException e) //this is probably a misuse of this exception type, but oh well, it kinda fits lol
+        catch (FeatureNotEnabledException e) //Возможно, это неправильное использование данного типа исключения, но вроде как подходит
         {
             
 

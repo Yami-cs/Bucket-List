@@ -2,14 +2,16 @@
 using System.Diagnostics;
 using BucketListMAUI.View;
 
+//ViewModel для основной страницы
+
 namespace BucketListMAUI.ViewModel;
 
 [QueryProperty("CreateFlag", "createflag")]
 [QueryProperty("NewListId", "id")]
 public partial class UserListViewModel : BaseViewModel
 {
-    private UserListService _uls;
-    private ItemService _itemService;
+    private readonly UserListService _uls;
+    private readonly ItemService _itemService;
     private int _newListId;
 
     [ObservableProperty]
@@ -22,20 +24,18 @@ public partial class UserListViewModel : BaseViewModel
     //TODO there is probably a better way to do this? idk
     public int NewListId
     {
-        get { return _newListId; }
+        get => _newListId;
         set
         {
-            if (CreateFlag)
+            if (!CreateFlag) return;
+            _newListId = value;
+            UserList ul = new()
             {
-                _newListId = value;
-                UserList ul = new()
-                {
-                    Id = value
-                };
-                ul = _uls.GetUserListById(ul);
-                UserLists.Add(ul);
-                CreateFlag = false;
-            }
+                Id = value
+            };
+            ul = _uls.GetUserListById(ul);
+            UserLists.Add(ul);
+            CreateFlag = false;
         }
     }
 
@@ -129,11 +129,11 @@ public partial class UserListViewModel : BaseViewModel
         {
             if (_itemService.GetUserListItems(userlist).Count > 0)
             {
-                int completedCount = _itemService.GetUserListItems(userlist).Count(item => item.IsCompleted);
+                var completedCount = _itemService.GetUserListItems(userlist).Count(item => item.IsCompleted);
                 double completedPercentage = Math.Round((double)completedCount / _itemService.GetUserListItems(userlist).Count * 100);
                 userlist.Percentage = completedPercentage;
                 if (completedPercentage <= 33) userlist.Color = Color.FromArgb("fdd4a6");
-                else if (33 < completedPercentage && completedPercentage <= 67) userlist.Color = Color.FromArgb("ffff95");
+                else if (completedPercentage is > 33 and <= 67) userlist.Color = Color.FromArgb("ffff95");
                 else if (completedPercentage > 67) userlist.Color = Color.FromArgb("99ff99");
             }
             else
@@ -152,7 +152,7 @@ public partial class UserListViewModel : BaseViewModel
 
         IsBusy = true;
 
-        string result = await Shell.Current.DisplayPromptAsync("Изменить название", "Введите новое название:");
+        var result = await Shell.Current.DisplayPromptAsync("Изменить название", "Введите новое название:");
 
         if (result is not null)
         {
