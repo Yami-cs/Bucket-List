@@ -4,6 +4,7 @@ using SkiaSharp.Extended.UI.Controls;
 
 namespace BucketListMAUI.Controls;
 
+// В данный момент этот класс не используется, но он позволяет добавлять Lottie анимацию в проект
 public class CircularLottie : SKLottieView
 {
     public new Color BackgroundColor = Colors.Transparent;

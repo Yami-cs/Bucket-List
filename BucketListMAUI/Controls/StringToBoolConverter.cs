@@ -15,7 +15,7 @@ public class StringToBoolConverter : IValueConverter
         var asString = (string)value;
         if (value is not null)
         {
-            var result = Boolean.Parse(asString);
+            var result = bool.Parse(asString);
             return result;
         }
         else

@@ -2,7 +2,7 @@ namespace BucketListMAUI.View;
 
 public partial class UserListDetails : ContentPage
 {
-    UserListDetailViewModel _ulvm;
+    private readonly UserListDetailViewModel _ulvm;
 
     public UserListDetails(UserListDetailViewModel userListDetailViewModel)
     {
@@ -23,11 +23,11 @@ public partial class UserListDetails : ContentPage
     private void OnCheckboxClicked(object sender, CheckedChangedEventArgs e)
     {
 
-        CheckBox thisCheckbox = sender as CheckBox;
+        var thisCheckbox = sender as CheckBox;
 
-        Frame currentFrame = thisCheckbox.BindingContext as Frame;
+        var currentFrame = thisCheckbox.BindingContext as Frame;
 
-        Item itemThatWasClicked = currentFrame.BindingContext as Item;
+        var itemThatWasClicked = currentFrame.BindingContext as Item;
 
 
         if (thisCheckbox.IsChecked)

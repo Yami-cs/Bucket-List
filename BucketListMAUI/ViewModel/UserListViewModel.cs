@@ -43,7 +43,7 @@ public partial class UserListViewModel : BaseViewModel
     {
         _uls = userListService;
         _itemService = itemService;
-        Title = "My Goals";
+        Title = "Мои цели";
     }
 
     [RelayCommand]
@@ -152,7 +152,7 @@ public partial class UserListViewModel : BaseViewModel
 
         IsBusy = true;
 
-        string result = await Shell.Current.DisplayPromptAsync("Change name", "Enter The New Name:");
+        string result = await Shell.Current.DisplayPromptAsync("Изменить название", "Введите новое название:");
 
         if (result is not null)
         {

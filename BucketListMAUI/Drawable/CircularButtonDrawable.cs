@@ -1,7 +1,6 @@
-﻿using System;
-using System.Reflection;
-using IImage = Microsoft.Maui.Graphics.IImage;
+﻿using System.Reflection;
 
+// Класс для отрисовки круглой кнопки
 namespace BucketListMAUI.Drawable
 {
     public class CircularButtonDrawable : IDrawable
@@ -10,7 +9,7 @@ namespace BucketListMAUI.Drawable
 
         public bool AreShadowsEnabled { get; set; } = true;
         /// <summary>
-        /// Строга с именем изображения.
+        /// Строка с именем изображения.
         /// </summary>
         public string Image { get; set; }
 
@@ -45,19 +44,14 @@ namespace BucketListMAUI.Drawable
             canvas.FillColor = this.ButtonColor;
             canvas.FillCircle(centerOfCircle, limitingDim / 2);
 #elif ANDROID || IOS
-        IImage image;
-        Assembly assembly = GetType().GetTypeInfo().Assembly;
-        using (Stream stream = assembly.GetManifestResourceStream("BucketListMAUI.Resources.Images." + Image))
-        {
-            image =  Microsoft.Maui.Graphics.Platform.PlatformImage.FromStream(stream);
-            if (image is null)
-                throw new FileNotFoundException("BucketListMAUI.Resources.Images." + Image); 
-            if (image != null)
-            {
-                //canvas.SetShadow(new SizeF(0,0), 0, Colors.Gray); 
-                canvas.DrawImage(image, dirtyRect.X + dirtyRect.Width / 4, dirtyRect.Y + dirtyRect.Height / 4, dirtyRect.Width / 2, dirtyRect.Height / 2); 
-            }
-        }
+            var assembly = GetType().GetTypeInfo().Assembly;
+        using var stream = assembly.GetManifestResourceStream("BucketListMAUI.Resources.Images." + Image);
+        var image = Microsoft.Maui.Graphics.Platform.PlatformImage.FromStream(stream);
+        if (image is null)
+            throw new FileNotFoundException("BucketListMAUI.Resources.Images." + Image);
+        //canvas.SetShadow(new SizeF(0,0), 0, Colors.Gray); 
+        canvas.DrawImage(image, dirtyRect.X + dirtyRect.Width / 4, dirtyRect.Y + dirtyRect.Height / 4, dirtyRect.Width / 2, dirtyRect.Height / 2);
+
 #endif
         }
     }

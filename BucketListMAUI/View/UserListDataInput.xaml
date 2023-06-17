@@ -23,7 +23,7 @@
                    MaxLength="40"
                    Style="{DynamicResource CommonEntryStyle}"
                    ReturnCommand="{Binding UserListCompletedCommand}"
-                   Placeholder="Goal Name"
+                   Placeholder="Название цели"
                    PlaceholderColor="{DynamicResource Accent}"/>
 
 
@@ -40,7 +40,7 @@
                         HeightRequest="75"
                         ButtonColor="{DynamicResource Tertiary}"
                         BackgroundColor="Transparent"
-                        Image="check.png"
+                        Image="plus_sign.png"
                         VerticalOptions="End"
                         HorizontalOptions="End"
 			            >

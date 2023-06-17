@@ -1,5 +1,6 @@
 ﻿namespace BucketListMAUI.ViewModel;
 
+//Базовый класс для ViewModel
 public partial class BaseViewModel : ObservableObject
 {
     [ObservableProperty]

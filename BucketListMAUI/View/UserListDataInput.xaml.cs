@@ -2,7 +2,7 @@ namespace BucketListMAUI.View;
 
 public partial class UserListDataInput : ContentPage
 {
-    private UserListDataInputViewModel _uldiv = new();
+    private readonly UserListDataInputViewModel _uldiv;
 
     public UserListDataInput(UserListDataInputViewModel userListDataInputViewModel)
     {
@@ -12,30 +12,11 @@ public partial class UserListDataInput : ContentPage
 
     }
 
-    private void Picker_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        var picker = sender as Picker;
-
-    }
-
-    private void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
-    {
-
-        var checkbox = sender as CheckBox;
-    }
-
     private async void NewItemButtonPressed(object sender, EventArgs e)
     {
         var circularButton = sender as CircularButton;
         await circularButton.BounceOnPressAsync();
         _uldiv.OnUserListCompleted();
-
-    }
-    private async void CancelButtonPressed(object sender, EventArgs e)
-    {
-        var circularButton = sender as CircularButton;
-        await circularButton.BounceOnPressAsync();
-        _uldiv.OnCancel();
 
     }
 }

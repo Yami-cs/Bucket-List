@@ -5,7 +5,7 @@ namespace BucketListMAUI.View;
 
 public partial class MainPage : ContentPage
 {
-    readonly UserListViewModel _ulvm;
+    private readonly UserListViewModel _ulvm;
 
     public MainPage(UserListViewModel ulViewModel)
     {

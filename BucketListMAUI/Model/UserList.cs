@@ -53,6 +53,7 @@ namespace BucketListMAUI.Model
             this.Name = ul.Name;
             this.Items = ul.Items;
             this.Percentage = ul.Percentage;
+            this.Color= ul.Color;
         }
 
         public UserList(string name)

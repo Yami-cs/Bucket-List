@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using CommunityToolkit.Maui;
 using BucketListMAUI.View;
-using BucketListMAUI.ViewModel;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 
 namespace BucketListMAUI;

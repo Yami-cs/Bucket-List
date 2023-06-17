@@ -1,6 +1,7 @@
 ﻿using BucketListMAUI.Handlers;
 using IImage = Microsoft.Maui.Graphics.IImage;
 
+// Класс, который отвечает за элемент интерфейса "Круглая кнопка"
 namespace BucketListMAUI.Controls
 {
     public class CircularButton : GraphicsView
@@ -48,7 +49,8 @@ namespace BucketListMAUI.Controls
             Drawable = drawable;
         }
 
-        static void OnButtonColorChanged(BindableObject bindable, object oldValue, object newValue)
+        //Метод, отвечающий за цвет кнопки
+        private static void OnButtonColorChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var control = (CircularButton)bindable;
             var buttonColor = control.ButtonColor;
@@ -58,7 +60,8 @@ namespace BucketListMAUI.Controls
             control.Invalidate();
         }
 
-        static void OnImageChanged(BindableObject bindable, object oldValue, object newValue)
+        //Метод, отвечающий за изображение на кнопке
+        private static void OnImageChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var control = (CircularButton)bindable;
             var image = control.Image;
@@ -67,21 +70,15 @@ namespace BucketListMAUI.Controls
             control.Invalidate();
 
         }
-        static void OnIsVisibleChanged(BindableObject bindable, object oldValue, object newValue)
+
+        //Метод, отвечающий за видимость кнопки
+        private static void OnIsVisibleChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var control = (CircularButton)bindable;
 
             var newValueAsBool = (bool)newValue;
 
-            if (newValueAsBool == true)
-            {
-                control.FadeTo(1, 500);
-            }
-            else
-            {
-                control.FadeTo(0, 500);
-            }
-
+            control.FadeTo(newValueAsBool == true ? 1 : 0, 500);
         }
 
         public async Task<bool> BounceOnPressAsync()

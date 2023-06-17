@@ -1,7 +1,9 @@
-﻿using SQLite;
-using SQLiteNetExtensions.Attributes;
+﻿
+/* Это класс Item, он отвечает за представление задач в целях */
 
 namespace BucketListMAUI.Model;
+
+/* Название таблицы и аттрибуты для датабазы SQLite*/
 [Table("Items")]
 public class Item : ObservableObject
 {

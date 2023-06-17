@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//Viewmodel для страницы ввода новой цели
 
 namespace BucketListMAUI.ViewModel;
 
@@ -32,8 +28,10 @@ public partial class UserListDataInputViewModel: BaseViewModel
     [RelayCommand]
     public async void OnUserListCompleted()
     {
-        UserList = new();
-        UserList.Name = UlName;
+        UserList = new()
+        {
+            Name = UlName
+        };
 
 
         UserList = _userListService.CreateUserList(UserList);
@@ -47,7 +45,7 @@ public partial class UserListDataInputViewModel: BaseViewModel
 
 
     [RelayCommand]
-    public async void OnCancel()
+    public static async void OnCancel()
     {
 
         await Shell.Current.GoToAsync("..?createflag=false");

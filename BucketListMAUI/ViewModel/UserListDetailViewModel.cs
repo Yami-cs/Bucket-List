@@ -107,7 +107,7 @@ public partial class UserListDetailViewModel: BaseViewModel
 
         IsBusy = true;
 
-        string result = await Shell.Current.DisplayPromptAsync("New Item", "Enter The New Item:");
+        string result = await Shell.Current.DisplayPromptAsync("Новая задача", "Введите новую задачу:");
 
         if (result is not null)
         {
@@ -162,7 +162,7 @@ public partial class UserListDetailViewModel: BaseViewModel
 
         IsBusy = true;
 
-        string result = await Shell.Current.DisplayPromptAsync("Change name", "Enter The New Name:");
+        string result = await Shell.Current.DisplayPromptAsync("Измeнить название", "Введите новое название:");
 
         if (result is not null)
         {

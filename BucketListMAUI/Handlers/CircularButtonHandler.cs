@@ -2,9 +2,10 @@
 
 namespace BucketListMAUI.Handlers;
 
+// В данный момент этот класс не используется (проблемы с переходом с .net6 на .net7)
 public partial class CircularButtonHandler : GraphicsViewHandler
 {
-    static IPropertyMapper<CircularButton, CircularButtonHandler> PropertyMapper = new PropertyMapper<CircularButton, CircularButtonHandler>(GraphicsViewHandler.Mapper)
+    private static readonly IPropertyMapper<CircularButton, CircularButtonHandler> PropertyMapper = new PropertyMapper<CircularButton, CircularButtonHandler>(GraphicsViewHandler.Mapper)
     {
         [nameof(CircularButton.ButtonColor)] = MapButtonColor,
         [nameof(CircularButton.Image)] = MapImage,
@@ -14,14 +15,15 @@ public partial class CircularButtonHandler : GraphicsViewHandler
     public CircularButtonHandler() : base(PropertyMapper)
     {
     }
-    static void MapButtonColor(CircularButtonHandler handler, CircularButton button)
+
+    private static void MapButtonColor(CircularButtonHandler handler, CircularButton button)
     {
         if (button.Drawable is CircularButtonDrawable drawable)
             drawable.ButtonColor = button.ButtonColor;
         button.Invalidate();
     }
 
-    static void MapImage(CircularButtonHandler handler, CircularButton button)
+    private static void MapImage(CircularButtonHandler handler, CircularButton button)
     {
         if (button.Drawable is CircularButtonDrawable drawable)
             drawable.Image = button.Image;
@@ -29,10 +31,7 @@ public partial class CircularButtonHandler : GraphicsViewHandler
     }
     static void MapIsVisible(CircularButtonHandler handler, CircularButton button)
     {
-        if (button.IsVisible)
-            button.FadeTo(1, 500);
-        else
-            button.FadeTo(0, 500);
+        button.FadeTo(button.IsVisible ? 1 : 0, 500);
     }
 
 }
