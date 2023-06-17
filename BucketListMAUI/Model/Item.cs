@@ -17,6 +17,9 @@ public class Item : ObservableObject
     [Column("category")]
     public string Category { get; set; }
 
+    [Column("creation_dt")]
+    public DateTime CreationDate { get; set; }
+
     [ForeignKey(typeof(UserList))]
     [Column("parentid")]
     public int ParentId { get; set; }
@@ -27,6 +30,7 @@ public class Item : ObservableObject
 
     public Item()
     {
+        CreationDate = DateTime.Now;
     }
 
     public Item(Item item)
@@ -35,11 +39,13 @@ public class Item : ObservableObject
         this.Description = item.Description;
         this.Category = item.Category;
         this.ParentId = item.ParentId;
+        this.CreationDate = item.CreationDate;
 
     }
     public Item(string itemName)
     {
         this.Name = itemName;
+        this.CreationDate = DateTime.Now;
     }
 
 }

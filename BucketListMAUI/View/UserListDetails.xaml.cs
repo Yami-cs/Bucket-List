@@ -10,7 +10,6 @@ public partial class UserListDetails : ContentPage
         BindingContext = userListDetailViewModel;
 
         _ulvm = userListDetailViewModel;
-        _ulvm.HasUndo = false;
         
 
     }
@@ -18,8 +17,6 @@ public partial class UserListDetails : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        var undoButton = this.FindByName("UndoButton") as CircularButton;
-        undoButton?.FadeTo(0, 500);
 
     }
 
@@ -49,14 +46,6 @@ public partial class UserListDetails : ContentPage
         var circularButton = sender as CircularButton;
         await circularButton?.BounceOnPressAsync();
         _ulvm.NewItemDialog();
-    }
-
-    private async void UndoButtonPressed(object sender, EventArgs e)
-    {
-
-        var circularButton = sender as CircularButton;
-        await circularButton.BounceOnPressAsync();
-        _ulvm.UndoButtonPressed();
     }
     private async void FrameTapped(object sender, EventArgs e)
     {

@@ -26,7 +26,6 @@ public partial class MainPage : ContentPage
         _ulvm.GetUserLists();
         _ulvm.CountPercentage();
 
-        var cartLottie = this.FindByName("CartLottie") as SKLottieView;
     }
 
     private async void NewListButtonPressed(object sender, EventArgs e)

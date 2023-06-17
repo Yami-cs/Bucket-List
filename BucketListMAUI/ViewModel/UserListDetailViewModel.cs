@@ -40,12 +40,6 @@ public partial class UserListDetailViewModel: BaseViewModel
         {
             userList = value;
 
-            //Maybe could use it for progress bar implemention
-            /*if (UserList.Name.Length > 10)
-                Title = $"{UserList.Name.Substring(0, 10)}...        - est. price: {UserList.TotalPrice}";
-            else
-                Title = $"{UserList.Name}...        - est. price: {UserList.TotalPrice}";*/
-
             Title = $"{UserList.Name}";
 
             OnUserListChanged(value);
@@ -84,8 +78,6 @@ public partial class UserListDetailViewModel: BaseViewModel
         
         UserList.Items = _itemService.GetUserListItems(UserList);
 
-      //  ListSorter.SortUserListItems(userList);
-
         UserListNotifers();
 
         IsRefreshing = false;
@@ -94,17 +86,13 @@ public partial class UserListDetailViewModel: BaseViewModel
     [RelayCommand]
     public async void GoToItemDetail(Item item)
     {
-        await Shell.Current.DisplayAlert(item.Name, $"Category: {item.Category} \nDescription: {item.Description} \n", "Ok");
+        await Shell.Current.DisplayAlert(item.Name, $"CreationDate: {item.CreationDate}", "Ok");
     }
 
     [RelayCommand]
     public void ItemWasChecked(Item item)
     {
         _itemService.UpdateItem(item);
-
-       // UserList.Items = ListSorter.SortUserListItems(userList);
-
-
 
         UserListNotifers();
 
@@ -143,7 +131,6 @@ public partial class UserListDetailViewModel: BaseViewModel
             var newItem = new Item(item);
 
             newItem = _itemService.CreateItem(newItem);
-           //newItem.ParentId = newItem.Id;
             UserList.Items.Add(newItem);
 
             UserListNotifers();
@@ -160,46 +147,13 @@ public partial class UserListDetailViewModel: BaseViewModel
     [RelayCommand]
     public void DeleteItem(Item item)
     {
-        undoItemBuffer.Push(item);
 
         _itemService.DeleteItem(item);
         UserList.Items.Remove(item);
 
-        HasUndo = true;
-        // We stop and restart the timer in case they delete things back to back, it won't take 
-        // away the button after 5 seconds from the first delete
-        undoTimer.Stop();
-        undoTimer.Start();
-
         UserListNotifers();
     }
 
-    [RelayCommand]
-    public void UndoButtonPressed()
-    {
-        //restart the timer on press, to extend the time they can press it
-        undoTimer.Stop();
-        undoTimer.Start();
-
-
-        Item undoneItem;
-        var wasUndone = undoItemBuffer.TryPop(out undoneItem);
-
-        if (wasUndone)
-        {
-            undoneItem = _itemService.CreateItem(undoneItem);
-           // undoneItem.ParentId = undoneItem.Id;
-
-            UserList.Items.Add(undoneItem);
-            UserListNotifers();
-        }
-        else
-        {
-            //maybe an error toast or something here
-        }
-
-
-    }
     [RelayCommand]
     public async void ChangeItemNameDialog(Item item)
     {
