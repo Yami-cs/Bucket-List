@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Maui.Graphics.Platform;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.Marshalling;
@@ -43,6 +44,7 @@ namespace BucketListMAUI.Model
         public UserList()
         {
             Items = new();
+            Color = Color.FromArgb("10FFFFFF");
         }
 
         public UserList(UserList ul)
