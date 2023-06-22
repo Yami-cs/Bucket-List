@@ -17,44 +17,44 @@ public class ItemService
         _db = db;
     }
 
-    public List<Item> GetAllItems()
+    public List<Goal> GetAllItems()
     {
-        var returnLists = _db.GetAllQuery<Item>();
+        var returnLists = _db.GetAllQuery<Goal>();
         return returnLists;
     }
 
-    public List<Item> GetItemByName(string name)
+    public List<Goal> GetItemByName(string name)
     {
         Guard.IsNotNullOrEmpty(name, nameof(name));
 
-        var returnLists = _db.GetQueryByName<Item>(name);
+        var returnLists = _db.GetQueryByName<Goal>(name);
         return returnLists;
     }
 
-    public Item GetItemById(Item item)
+    public Goal GetItemById(Goal item)
     {
         Guard.IsNotNull(item, nameof(item));
 
-        var returnItem = _db.GetQueryById<Item>(item.Id);
+        var returnItem = _db.GetQueryById<Goal>(item.Id);
         return returnItem;
     }
-    public List<Item> GetUserListItems(UserList ul)
+    public List<Goal> GetUserListItems(UserList ul)
     {
         Guard.IsNotNull(ul, nameof(ul));
 
-        var itemList = _db.GetQueryByParentId<Item>(ul.Id);
+        var itemList = _db.GetQueryByParentId<Goal>(ul.Id);
         return itemList;
     }
 
-    public List<Item> GetItemByParentId(UserList ul)
+    public List<Goal> GetItemByParentId(UserList ul)
     {
         Guard.IsNotNull(ul, nameof(ul));
 
-        var returnLists = _db.GetQueryByParentId<Item>(ul.Id);
+        var returnLists = _db.GetQueryByParentId<Goal>(ul.Id);
         return returnLists;
     }
 
-    public Item CreateItem(Item newItem)
+    public Goal CreateItem(Goal newItem)
     {
         Guard.IsNotNull(newItem, nameof(newItem));
 
@@ -65,14 +65,14 @@ public class ItemService
 
     }
 
-    public void DeleteItem(Item deletedItem)
+    public void DeleteItem(Goal deletedItem)
     {
         Guard.IsNotNull(deletedItem, nameof(deletedItem));
 
         _db.Delete(deletedItem);
     }
 
-    public void UpdateItem(Item updatedItem)
+    public void UpdateItem(Goal updatedItem)
     {
         Guard.IsNotNull(updatedItem, nameof(updatedItem));
 

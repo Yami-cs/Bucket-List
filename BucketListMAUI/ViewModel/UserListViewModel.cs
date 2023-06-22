@@ -99,11 +99,11 @@ public partial class UserListViewModel : BaseViewModel
             return;
         try
         {
-            ul.Items = _itemService.GetItemByParentId(ul);
+            ul.Goals = _itemService.GetItemByParentId(ul);
         }
         catch (Exception e)
         {
-            ul.Items.Clear();
+            ul.Goals.Clear();
         }
 
         await Shell.Current.GoToAsync($"{nameof(UserListDetails)}?id={ul.Id}", true,

@@ -27,7 +27,7 @@ public partial class UserListDetails : ContentPage
 
         var currentFrame = thisCheckbox.BindingContext as Frame;
 
-        var itemThatWasClicked = currentFrame.BindingContext as Item;
+        var itemThatWasClicked = currentFrame.BindingContext as Goal;
 
 
         if (thisCheckbox.IsChecked)
@@ -54,7 +54,7 @@ public partial class UserListDetails : ContentPage
         await frame.ScaleTo(1.1, 100, Easing.BounceIn);
         await frame.ScaleTo(1.0, 75, Easing.BounceOut);
 
-        var item = ((TappedEventArgs)e).Parameter as Item;
+        var item = ((TappedEventArgs)e).Parameter as Goal;
         _ulvm.GoToItemDetail(item);
     }
 }

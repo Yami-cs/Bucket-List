@@ -10,12 +10,12 @@ public partial class UserListDetailViewModel: BaseViewModel
     private readonly ItemService _itemService;
 
     System.Timers.Timer undoTimer;
-    Stack<Item> undoItemBuffer;
+    Stack<Goal> undoItemBuffer;
 
     public UserListDetailViewModel(ItemService itemService)
     {
         _itemService = itemService;
-        undoItemBuffer = new Stack<Item>();
+        undoItemBuffer = new Stack<Goal>();
 
         HasUndo = false;
 
@@ -42,7 +42,7 @@ public partial class UserListDetailViewModel: BaseViewModel
             OnUserListChanged(value);
             OnPropertyChanged(nameof(UserList));
             OnPropertyChanged(nameof(Title));
-            OnPropertyChanged(nameof(UserList.Items));
+            OnPropertyChanged(nameof(UserList.Goals));
         }
     }
 
@@ -70,10 +70,10 @@ public partial class UserListDetailViewModel: BaseViewModel
     {
 
         IsRefreshing = true;
-        UserList.Items.Clear();
+        UserList.Goals.Clear();
 
         
-        UserList.Items = _itemService.GetUserListItems(UserList);
+        UserList.Goals = _itemService.GetUserListItems(UserList);
 
         UserListNotifers();
 
@@ -81,13 +81,13 @@ public partial class UserListDetailViewModel: BaseViewModel
     }
 
     [RelayCommand]
-    public async void GoToItemDetail(Item item)
+    public async void GoToItemDetail(Goal item)
     {
         await Shell.Current.DisplayAlert(item.Name, $"CreationDate: {item.CreationDate}", "Ok");
     }
 
     [RelayCommand]
-    public void ItemWasChecked(Item item)
+    public void ItemWasChecked(Goal item)
     {
         _itemService.UpdateItem(item);
 
@@ -121,14 +121,14 @@ public partial class UserListDetailViewModel: BaseViewModel
 
         try
         {
-            var item = new Item(itemName);
+            var item = new Goal(itemName);
 
             item.ParentId = UserList.Id;
 
-            var newItem = new Item(item);
+            var newItem = new Goal(item);
 
             newItem = _itemService.CreateItem(newItem);
-            UserList.Items.Add(newItem);
+            UserList.Goals.Add(newItem);
 
             UserListNotifers();
 
@@ -142,17 +142,17 @@ public partial class UserListDetailViewModel: BaseViewModel
     }
 
     [RelayCommand]
-    public void DeleteItem(Item item)
+    public void DeleteItem(Goal item)
     {
 
         _itemService.DeleteItem(item);
-        UserList.Items.Remove(item);
+        UserList.Goals.Remove(item);
 
         UserListNotifers();
     }
 
     [RelayCommand]
-    public async void ChangeItemNameDialog(Item item)
+    public async void ChangeItemNameDialog(Goal item)
     {
         if (IsBusy)
             return;
@@ -176,7 +176,7 @@ public partial class UserListDetailViewModel: BaseViewModel
 
         OnUserListChanged(UserList);
         OnPropertyChanged(nameof(UserList));
-        OnPropertyChanged(nameof(UserList.Items));
+        OnPropertyChanged(nameof(UserList.Goals));
     }
 
     private void UndoTimerTick(object sender, EventArgs e)

@@ -4,8 +4,8 @@
 namespace BucketListMAUI.Model;
 
 /* Название таблицы и аттрибуты для датабазы SQLite*/
-[Table("Items")]
-public class Item : ObservableObject
+[Table("Goals")]
+public class Goal : ObservableObject
 {
     [PrimaryKey, AutoIncrement]
     [Column("id")]
@@ -30,12 +30,12 @@ public class Item : ObservableObject
     public bool IsCompleted { get; set; }
 
 
-    public Item()
+    public Goal()
     {
         CreationDate = DateTime.Now;
     }
 
-    public Item(Item item)
+    public Goal(Goal item)
     {
         this.Name = item.Name;
         this.Description = item.Description;
@@ -44,7 +44,7 @@ public class Item : ObservableObject
         this.CreationDate = item.CreationDate;
 
     }
-    public Item(string itemName)
+    public Goal(string itemName)
     {
         this.Name = itemName;
         this.CreationDate = DateTime.Now;

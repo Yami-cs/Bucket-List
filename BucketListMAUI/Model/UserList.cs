@@ -28,7 +28,7 @@ namespace BucketListMAUI.Model
         }
 
         [OneToMany]
-        public List<Item> Items { get; set; }
+        public List<Goal> Goals { get; set; }
 
         [Column("creation_dt")]
         public DateTime CreationDate { get; set; }
@@ -38,7 +38,7 @@ namespace BucketListMAUI.Model
 
         public UserList()
         {
-            Items = new();
+            Goals = new();
             Color = Color.FromArgb("10FFFFFF");
         }
 
@@ -46,7 +46,7 @@ namespace BucketListMAUI.Model
         {
             this.Id = ul.Id;
             this.Name = ul.Name;
-            this.Items = ul.Items;
+            this.Goals = ul.Goals;
             this.Percentage = ul.Percentage;
             this.Color= ul.Color;
         }
@@ -54,7 +54,7 @@ namespace BucketListMAUI.Model
         public UserList(string name)
         {
             Name = name;
-            Items = new();
+            Goals = new();
         }
     }
 }

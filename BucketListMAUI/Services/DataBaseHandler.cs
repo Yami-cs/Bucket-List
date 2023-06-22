@@ -22,7 +22,7 @@ public class DatabaseHandler
         "database.db3");
 
         _db = new SQLiteConnection(_pathToDb);
-        _db.CreateTable<Item>();
+        _db.CreateTable<Goal>();
         _db.CreateTable<UserList>();
     }
 
@@ -40,7 +40,7 @@ public class DatabaseHandler
 
         _pathToDb = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), newDBName);
         _db = new SQLiteConnection(_pathToDb);
-        _db.CreateTable<Item>();
+        _db.CreateTable<Goal>();
         _db.CreateTable<UserList>();
     }
 
@@ -99,7 +99,7 @@ public class DatabaseHandler
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="id">The Parent's ID you're looking for (Foreign Key on the Item Table)</param>
-    /// <returns>All Items found belonging to that parent</returns>
+    /// <returns>All Goals found belonging to that parent</returns>
     /// <exception cref="Exception"></exception>
     public List<T> GetQueryByParentId<T>(int id) where T : new()
     {

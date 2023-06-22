@@ -26,7 +26,7 @@
                      CommandParameter="UserListCollectionView"
                      IsRefreshing="{Binding IsRefreshing}"
 		             Grid.Row="0">
-        <CollectionView ItemsSource="{Binding UserList.Items}"
+        <CollectionView ItemsSource="{Binding UserList.Goals}"
                         CanReorderItems="False"
                         SelectionMode="None"
                         x:Name="UserListCollectionView"
@@ -34,7 +34,7 @@
                             Grid.Row="0">
 
             <CollectionView.ItemTemplate >
-                <DataTemplate x:DataType="model:Item">
+                <DataTemplate x:DataType="model:Goal">
                     <Grid Padding="5"
                           ColumnDefinitions="*,*,*"
                           RowDefinitions="*,Auto">
@@ -77,9 +77,9 @@
                                   Padding="1"
                                   Margin="1">
                                     <CheckBox Color="{DynamicResource Accent}" 
-                                                  x:DataType="model:Item"
+                                                  x:DataType="model:Goal"
                                                   BindingContext="{x:Reference ItemFrame}"
-                                                  IsChecked="{Binding IsCompleted, Source={RelativeSource AncestorType={x:Type model:Item}}}"
+                                                  IsChecked="{Binding IsCompleted, Source={RelativeSource AncestorType={x:Type model:Goal}}}"
                                                   CheckedChanged="OnCheckboxClicked"
                                                   Grid.Row="1"
                                                   Grid.RowSpan="2"
